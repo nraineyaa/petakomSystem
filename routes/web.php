@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +19,17 @@ Route::get('/', function () {
     return view('landingpage');
 });
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+=======
+
+Route::get('/testactivity', function(){
+    return view('activity.activity');
+});
+
+Route::get('/homepage', function(){
+    return view('homepage');
+});
+
