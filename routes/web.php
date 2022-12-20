@@ -22,3 +22,7 @@ Route::get('/', function () {
 Route::get('/testactivity', function(){
     return view('activity.activity');
 });
+
+Route::get('/homepage', function(){
+    return view('homepage');
+});
