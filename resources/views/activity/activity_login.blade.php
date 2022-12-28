@@ -9,7 +9,7 @@
             <p class="lead text-muted">Let's create more activity for the community of FK.</p>
         </div>
 
-        <a href="{{ route('create.activity') }}" class="btn btn-warning p-2 mb-3 fw-semibold">+ Create new activity</a>
+        <a href="{{ route('activity.create') }}" class="btn btn-warning p-2 mb-3 fw-semibold">+ Create new activity</a>
 
         <div class="card mx-auto p-3">
             <div class="card-body">
@@ -33,7 +33,7 @@
                                         {{-- @csrf
                                         @method('DELETE') --}}
                                         <a href="#" class="text-decoration-none btn btn-outline-success">View</a>
-                                        <a href="#" class="text-decoration-none btn btn-warning">Edit profile</a>
+                                        <a href="{{ route('activity.edit') }}" class="text-decoration-none btn btn-warning">Edit profile</a>
                                         <button class="btn btn-danger" type="submit">Delete</button>
                                         {{--
                                     </form> --}}
