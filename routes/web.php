@@ -19,10 +19,19 @@ Route::get('/', function () {
 });
 
 
-Route::get('/testactivity', function(){
-    return view('activity.activity');
-});
+// Route::get('/testactivity', function(){
+//     return view('activity.activity');
+// });
 
 Route::get('/homepage', function(){
     return view('homepage');
+});
+
+
+Route::controller(ActivityController::class)->group(function(){
+    Route::get('/activity', 'index')->name('activity.page');
+    Route::get('/showactivity', 'show')->name('activity.show');
+    Route::get('/activity-login', 'showActivity')->name('activity.login');
+    Route::get('/createactivity', 'createActivity')->name('create.activity');
+    Route::get('/editactivity', 'editActivity')->name('edit.activity');
 });
