@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view('landingpage');
 });
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/homepage', function(){
     return view('homepage');
@@ -31,3 +34,4 @@ Route::controller(ActivityController::class)->group(function(){
     Route::get('/createactivity', 'createActivity')->name('activity.create');
     Route::get('/editactivity', 'editActivity')->name('activity.edit');
 });
+
