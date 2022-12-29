@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,16 +19,6 @@ Route::get('/', function () {
     return view('landingpage');
 });
 
-Route::get('/', function () {
-    if ($user = Auth::user()) {
-        //if login
-        return redirect('/dashboard');
-    } else {
-        //if not login
-        return redirect('login');
-    }
-});
-
 Auth::routes();
 
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
