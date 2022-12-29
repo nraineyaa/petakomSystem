@@ -18,6 +18,16 @@ Route::get('/', function () {
     return view('landingpage');
 });
 
+Route::get('/', function () {
+    if ($user = Auth::user()) {
+        //if login
+        return redirect('/dashboard');
+    } else {
+        //if not login
+        return redirect('login');
+    }
+});
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
