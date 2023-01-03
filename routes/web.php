@@ -28,10 +28,21 @@ Route::get('/homepage', function(){
 });
 
 Route::controller(ActivityController::class)->group(function(){
+    // general page
     Route::get('/activity', 'index')->name('activity.page');
-    Route::get('/showactivity', 'show')->name('activity.show');
+    Route::get('/showactivity/{id}', 'show')->name('activity.show');
+    // user page
+    // Route::get('/deleteactivity', 'deleteActivity')->name('delete.activity');
     Route::get('/showactivity_login', 'showActivity')->name('activity.login');
     Route::get('/createactivity', 'createActivity')->name('activity.create');
-    Route::get('/editactivity', 'editActivity')->name('activity.edit');
+    Route::get('/editactivity/{id}', 'editActivity')->name('activity.edit');
+    Route::get('/proposeactivity/{id}', 'proposeActivity')->name('propose.activity');
+    Route::get('/petakompage', 'activityProposed')->name('petakom.page');
+    Route::post('storeactivity', 'store')->name('store.activity');
+    Route::post('/updateactivity/{id}', 'update')->name('update.activity');
+    Route::post('/deleteactivity/{id}', 'destroy')->name('destroy.activity');
+    Route::get('/approveActivity/{id}', 'approveActivity')->name('propose.approve');
+    Route::get('/rejectActivity/{id}', 'rejectActivity')->name('propose.reject');
+
 });
 
