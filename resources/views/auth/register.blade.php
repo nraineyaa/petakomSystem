@@ -40,6 +40,15 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="category" class="col-md-4 col-form-label text-md-end">Category</label>
+
+                            <div class="col-md-6">
+                                <input id="category" type="text" class="form-control" name="category" placeholder="" required >
+
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">

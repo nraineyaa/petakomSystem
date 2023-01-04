@@ -6,11 +6,10 @@
     <div class="container">
         <div class="text-center">
             <span class="fw-semibold display-2">Activities</span>
-            <p class="lead text-muted">These are the list of propose activities by the lecturers and students</p>
+            <p class="lead text-muted">Let's create more activity for the community of FK.</p>
         </div>
 
-        {{-- <a href="{{ route('activity.create') }}" class="btn btn-warning p-2 mb-3 fw-semibold">Create new
-            activity</a> --}}
+        <a href="{{ route('activity.create') }}" class="btn btn-warning p-2 mb-3 fw-semibold">Create new activity</a>
 
         @if (Session::has('success'))
         <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
@@ -40,29 +39,32 @@
                         <tbody class="table-group-divider text-center">
                             @if (count($activity) > 0)
                             @foreach ($activity as $activities)
-                            <tr class="align-middle">
+                            <tr>
                                 <td>{{ $activities->id }}</td>
-                                <td>{{ $activities->activity->name }}</td>
-                                <td>{{ $activities->activity->date }}</td>
+                                <td>{{ $activities->name }}</td>
+                                <td>{{ $activities->date }}</td>
                                 <td>
-                                    @if ($activities->activity->status == "Rejected")
+                                    @if ($activities->status == "Rejected")
                                     <div class="badge bg-danger text-wrap" style="width: 6rem;">
-                                        {{ $activities->activity->status }}
+                                        {{ $activities->status }}
                                     </div>
                                     @else
                                     <div class="badge bg-success text-wrap" style="width: 6rem;">
-                                        {{ $activities->activity->status }}
+                                        {{ $activities->status }}
                                     </div>
                                     @endif
                                 </td>
                                 <td>
                                     <a href="{{ route('activity.show', $activities->id) }}"
                                         class="text-decoration-none btn btn-outline-success">View</a>
-                                    <a href="{{ route('propose.approve', $activities->activity->id) }}"
-                                        class="text-decoration-none btn btn-primary">Approve</a>
-                                    <a href="{{ route('propose.reject', $activities->activity->id) }}"
-                                        class="text-decoration-none btn btn-danger">Reject</a>
+                                    <a href="{{ route('activity.edit', $activities->id) }}"
+                                        class="text-decoration-none btn btn-warning">Edit profile</a>
+                                    <a href="{{ route('propose.activity', $activities->id) }}"
+                                        class="text-decoration-none btn btn-primary">Propose</a>
+                                    <a href="#" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#ModalDelete{{ $activities->id }}">Delete</a>
                                 </td>
+                                @include('activity.delete')
                             </tr>
                             @endforeach
                             @else
