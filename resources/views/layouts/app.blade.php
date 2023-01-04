@@ -138,6 +138,7 @@
     </script>
 
 </body>
+    <!-- Navbar -->
     <script>
         function setActive() {
         aObj = document.getElementById('app').getElementsByTagName('a');
