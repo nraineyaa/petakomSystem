@@ -1,26 +1,49 @@
 @extends('layouts.app')
 @section('content')
-<title>Show</title>
 
+<style>
+  a:link { text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+
+<title>Bulletin | View News</title>
+
+<!-- container -->
 <div class="container">
+  <!-- card -->
 <div style="border-color:white;" class="card">
-  <div style="border-color:white;font-weight:bold;" class="card-header">News
-    <a href="{{ url('user/bulletin') }}" class="btn btn-sm btn-danger float-end">Back</a>
+  <!-- card header -->
+  <div style="border-color:white;font-weight:bold;" class="card-header">  
+    <a href="{{ url('bulletinUserPage') }}">Bulletin</a>
+     / 
+    <a href="">{{ $bulletin->news_title }}</a>
   </div>
+  <!-- card body -->
   <div class="card-body">
-        <p class="card-text">{{ $bulletin->news_title }}</p>
-        <p class="card-text">By <span style="text-transform:uppercase;font-weight:bold;">{{ $bulletin->author_name }}</span> - {{ $bulletin->created_at->format('d/m/Y') }}</p>
+        <!-- news title -->
+        <h1><b>{{ $bulletin->news_title }}</b></h1>
+        <!-- author name, date(created_at) -->
+        <p>
+          By <span style="text-transform:uppercase;font-weight:bold;">{{ $bulletin->author_name }}</span> 
+          - <span style="color:#4169E1;font-weight:bold;">{{ $bulletin->created_at->format('d/m/Y') }}</span>
+
+        <!-- edited status -->
+        <?php 
+          if($bulletin['updateBy']==Null) 
+            echo '';
+          else 
+            echo '<span style="color:blue;float:right;">Edited</span>';
+        ?>
+        </p>
         <hr>
-        <p style="margin-top:150px;" class="center"><img src="{{ asset('uploads/newsImage/' .$bulletin->news_image) }}" width="40%"></p>
-        <br>
-        <p>{!! $bulletin->news_description !!}</p>
+        <!-- news description -->
+        <p>{!! $bulletin->news_description !!}</p><br>
         <hr>
-        <p><span style="color:blue;">Edited by {{ $bulletin->updateBy }} on {{ $bulletin->updated_at->format('d/m/Y') }}</span></p>
   </div>
       
     </hr>
   
-  </div>
-</div>
-</div>
+  </div><!-- end card body -->
+</div><!-- end card -->
+</div><!-- end container -->
 @endsection
