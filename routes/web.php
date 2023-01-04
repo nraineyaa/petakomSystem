@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActivityController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landingpage');
 });
 
+Auth::routes();
 
-Route::get('/testactivity', function(){
-    return view('activity.activity');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/homepage', function(){
+    return view('homepage');
 });
+
+Route::controller(ActivityController::class)->group(function(){
+    Route::get('/activity', 'index')->name('activity.page');
+    Route::get('/showactivity', 'show')->name('activity.show');
+    Route::get('/showactivity_login', 'showActivity')->name('activity.login');
+    Route::get('/createactivity', 'createActivity')->name('activity.create');
+    Route::get('/editactivity', 'editActivity')->name('activity.edit');
+});
+
