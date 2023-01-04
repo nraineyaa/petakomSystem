@@ -36,8 +36,6 @@ Route::controller(ActivityController::class)->group(function(){
     // general page
     Route::get('/activity', 'index')->name('activity.page');
     Route::get('/showactivity/{id}', 'show')->name('activity.show');
-    // user page
-    // Route::get('/deleteactivity', 'deleteActivity')->name('delete.activity');
     Route::get('/showactivity_login', 'showActivity')->name('activity.login');
     Route::get('/createactivity', 'createActivity')->name('activity.create');
     Route::get('/editactivity/{id}', 'editActivity')->name('activity.edit');
