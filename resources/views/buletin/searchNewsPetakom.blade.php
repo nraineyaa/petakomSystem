@@ -47,7 +47,7 @@
                                 <tbody>
 
                                 <!-- Get Data From Database -->
-                                @foreach($bulletin as $item)
+                                @foreach($searchNews as $item)
                                     <tr>
                                         <td><b>{{ $item->news_title }}</b><br>By <span style="text-transform:lowercase;;font-weight:bold;">{{ $item->author_name }}</span> - <span style="color:#4169E1;font-weight:bold;">{{ $item->created_at->format('d/m/Y') }}</span></td>
                                         <td>

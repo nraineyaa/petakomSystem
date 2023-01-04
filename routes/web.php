@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\BulletinController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,4 +32,12 @@ Route::get('/testactivity', function(){
 Route::get('/homepage', function(){
     return view('homepage');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Manage Bulletin
+|--------------------------------------------------------------------------
+|
+*/
+
 
