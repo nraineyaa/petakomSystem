@@ -1,12 +1,9 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
-<<<<<<< HEAD
 use App\Http\Controllers\BulletinController;
-=======
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
->>>>>>> 4e54dc304f6000aaa8978c7dbcca18fa560e0015
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,27 +24,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-<<<<<<< HEAD
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
+
 Route::get('/dashboard', [DashboardController::class, 'index']);
->>>>>>> 4e54dc304f6000aaa8978c7dbcca18fa560e0015
+
 
 // Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/homepage', function(){
     return view('homepage');
 });
-
-<<<<<<< HEAD
-/*
-|--------------------------------------------------------------------------
-| Manage Bulletin
-|--------------------------------------------------------------------------
-|
-*/
-
-=======
 
 Route::controller(ActivityController::class)->group(function(){
     // general page
@@ -67,5 +53,4 @@ Route::controller(ActivityController::class)->group(function(){
     Route::get('/rejectActivity/{id}', 'rejectActivity')->name('propose.reject');
 
 });
->>>>>>> 4e54dc304f6000aaa8978c7dbcca18fa560e0015
 
