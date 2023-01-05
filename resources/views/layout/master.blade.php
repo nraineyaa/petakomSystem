@@ -26,32 +26,73 @@
 
             <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0 text-center">
+
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/homepage">Home</a>
                     </li>
+
+                    @if( auth()->user()->category!= "Dean")
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/activity">Activities</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Calendar</a>
+                        <a class="nav-link {{ request()->routeIs('activity*') ? 'active' : '' }}" aria-current="page" href="/activity">Activities</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#">Proposal</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Report</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#">Election</a>
                     </li>
+                    @endif
+
+                    @if( auth()->user()->category == "Committee" ||  auth()->user()->category == "HOSD" )
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Calendar</a>
+                    </li>
+                    @endif
+                   
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Report</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#">Bulletin</a>
                     </li>
                 </ul>
             </div>
             <div class="d-flex ms-auto gap-3">
-                <a href="#" class="btn btn-primary" type="button">Login</a>
-                <a href="#" class="btn btn-outline-primary" type="button">Register</a>
+            <ul class="navbar-nav ms-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
             </div>
         </div>
     </nav>
