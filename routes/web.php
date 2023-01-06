@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\BulletinController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -23,14 +24,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/dashboard', [DashboardController::class, 'index']);
+
 
 // Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/homepage', function(){
-    return view('homepage');
-});
-
+Route::get('/homepage', [HomeController::class, 'homepage']);
 
 Route::controller(ActivityController::class)->group(function(){
     // general page
@@ -46,6 +47,47 @@ Route::controller(ActivityController::class)->group(function(){
     Route::post('/deleteactivity/{id}', 'destroy')->name('destroy.activity');
     Route::get('/approveActivity/{id}', 'approveActivity')->name('propose.approve');
     Route::get('/rejectActivity/{id}', 'rejectActivity')->name('propose.reject');
+});
 
+//----------------------------- BULLETIN MODULE ----------------------------//
+Route::controller(BulletinController::class)->group(function(){
+
+    //----------------------------- USER EXCEPT PETAKOM ----------------------------//
+    //get page bulletin for users
+    Route::get('/bulletinUserPage', 'indexUser');
+
+    //show bulletin news in full details
+    Route::get('/bulletin/{id}/show','showNewsUser');
+
+    //search news by title or author name
+    Route::get('/searchNewsUser','searchNewsUser');
+
+    //---------------------------------- PETAKOM -----------------------------------//
+    Route::prefix('committee')->middleware(['auth','isPetakom'])->group(function()
+    {
+        //get page bulletin for petakom committee
+        Route::get('/bulletin', 'indexPetakom');
+
+        //create new news
+        Route::get('/create', function (){ return view('buletin.addNews'); });
+
+        //insert new news
+        Route::post('/bulletin/store', 'storeNews');
+
+        //search news by title or author name
+        Route::get('/searchNewsPetakom','searchNewsPetakom');
+
+        //show bulletin news in full details
+        Route::get('/bulletin/{id}/show','showNews');
+
+        //edit news form
+        Route::get('/bulletin/{id}/edit','editNews');
+
+        //update news
+        Route::post('/bulletin/{id}/update','updateNews');
+
+        //delete news
+        Route::get('/bulletin/{id}/delete','deleteNews');
+    });
 });
 

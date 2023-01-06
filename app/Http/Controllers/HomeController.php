@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\BulletinModel;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,12 @@ class HomeController extends Controller
     public function index()
     {
         return view('dashboard.Student');
+    }
+
+    //bulletin show title
+    public function homepage()
+    {
+        $bulletin = BulletinModel::orderBy('created_at','desc')->paginate(5);
+        return view ('homepage')->with('bulletin', $bulletin);
     }
 }
