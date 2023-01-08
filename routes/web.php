@@ -35,3 +35,11 @@ Route::controller(ActivityController::class)->group(function(){
     Route::get('/editactivity', 'editActivity')->name('activity.edit');
 });
 
+Route::controller(App\Http\Controllers\ElectionController::class)->group(function(){
+    Route::get('/studList', 'vote')->name('election.student.studList');
+    Route::get('/register', 'register')->name('election.student.register');
+    Route::get('/comList', 'comList')->name('election.committee.comList');
+    Route::get('/comInfo', 'comInfo')->name('election.committee.comInfo');
+    Route::get('/hosdList', 'hosdList')->name('election.hosd.hosdList');
+    Route::get('/hosdInfo', 'hosdInfo')->name('election.hosd.hosdInfo');
+});

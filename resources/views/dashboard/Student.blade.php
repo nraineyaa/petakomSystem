@@ -1,4 +1,3 @@
-
 @extends('layout.master')
 
 @section('content')
@@ -21,4 +20,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection@
