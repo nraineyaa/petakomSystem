@@ -56,7 +56,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('activity.show', $activities->id) }}"
+                                    <a href="{{ route('activity.show', $activities->Activity->id) }}"
                                         class="text-decoration-none btn btn-outline-success">View</a>
                                     <a href="{{ route('propose.approve', $activities->activity->id) }}"
                                         class="text-decoration-none btn btn-primary">Approve</a>
