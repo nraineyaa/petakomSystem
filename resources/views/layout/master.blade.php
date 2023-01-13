@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body fixed-top">
         <div class="container">
-            <a class="navbar-brand me-auto" href="/homepage">
+            <a class="navbar-brand me-auto" href="/">
                 <img src="{{ asset('image/petakom.png') }}" alt="petakom-logo" style="width: 75px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

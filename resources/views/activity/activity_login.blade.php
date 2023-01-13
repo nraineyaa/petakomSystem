@@ -58,27 +58,31 @@
                                     </div>
                                     @else
                                     <div class="badge bg-primary text-wrap text-light" style="width: 6rem;">
-                                        None
+                                        Waiting...
                                     </div>
                                     @endif
                                 </td>
                                 <td>
                                     <a href="{{ route('activity.show', $activities->id) }}"
                                         class="text-decoration-none btn btn-outline-success">View</a>
-                                   
-                                    @if ($activities->propose)
-                                    <a href="{{ route('activity.edit', $activities->id) }}"
-                                        class="text-decoration-none btn btn-warning disabled">Edit activity</a>
-                                    <a href="{{ route('propose.activity', $activities->id) }}"
-                                        class="text-decoration-none btn btn-primary disabled" >Propose</a>
-                                    @else
+
+                                    @if (!$activities->propose || $activities->status == "Rejected")
                                     <a href="{{ route('activity.edit', $activities->id) }}"
                                         class="text-decoration-none btn btn-warning">Edit activity</a>
                                     <a href="{{ route('propose.activity', $activities->id) }}"
-                                        class="text-decoration-none btn btn-primary" >Propose</a>
-                                    @endif
+                                        class="text-decoration-none btn btn-primary">Propose</a>
                                     <a href="#" class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#ModalDelete{{ $activities->id }}">Delete</a>
+                                    @else
+                                    <a href="{{ route('activity.edit', $activities->id) }}"
+                                        class="text-decoration-none btn btn-warning disabled">Edit activity</a>
+                                    <a href="{{ route('propose.activity', $activities->id) }}"
+                                        class="text-decoration-none btn btn-primary disabled">Propose</a>
+                                    <a href="#" class="btn btn-danger disabled" data-bs-toggle="modal"
+                                        data-bs-target="#ModalDelete{{ $activities->id }}">Delete</a>
+                                    @endif
+
+
                                 </td>
                                 @include('activity.delete')
                             </tr>
