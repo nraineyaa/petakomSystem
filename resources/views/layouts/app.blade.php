@@ -31,7 +31,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{  Auth::check() ? '' : '/'}}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('image/petakom.png') }}" alt="petakom-logo" style="width: 75px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -68,17 +68,16 @@
                         @else
                         <ul style="margin-right:270px;" class="navbar-nav ms-auto">
                             <!-- Home -->
-                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="/homepage">{{ __('Home') }}</a>
+                            </li>
                             <!-- Activities -->
                             @if(Auth::check())
-                            {{-- <li class="nav-item" style="display: none;">
-                                <a class="nav-link" href="/homepage">{{ __('Home') }}</a>
-                            </li> --}}
-                            @if (Auth::user()->category == 'student' || Auth::user()->category == 'lecturer')
+                            @if (auth()->user()->category == 'student' || auth()->user()->category == 'lecturer')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('activity.login') }}">{{ __('Activities') }}</a>
                             </li>
-                            @elseif (Auth::user()->category == 'committee')
+                            @elseif (auth()->user()->category == 'committee')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('petakom.page') }}">{{ __('Activities') }}</a>
                             </li>
@@ -88,7 +87,6 @@
                             </li>
                             @endif
                             @endif
-
                             <!-- Calendar -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/homepage">{{ __('Calendar') }}</a>

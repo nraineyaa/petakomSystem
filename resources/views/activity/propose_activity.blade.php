@@ -36,7 +36,7 @@
                             @endforeach
                             @else
                             <tr>
-                                <td colspan="5" class="text-center">No Activity Available</td>
+                                <td colspan="5" class="text-center">No Data Available</td>
                             </tr>
                             @endif
                         </tbody>
