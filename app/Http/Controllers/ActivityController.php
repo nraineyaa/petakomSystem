@@ -30,8 +30,8 @@ class ActivityController extends Controller
     // 
     public function showActivity()
     {
-
         $activity = Activity::all();
+        
         return view(('activity.activity_login'), compact('activity'));
     }
 
@@ -61,6 +61,8 @@ class ActivityController extends Controller
 
         $activity = Activity::find($id);
         $activity->update($request->all());
+        $propose = ProposeActivity::where('activity_id', '=', $activity->id)->first();
+        $propose->delete();
 
         return redirect()->route('activity.login')->with('success', 'Successfully updated');
     }

@@ -42,7 +42,7 @@
                             <tr>
                                 <td>{{ $activities->id }}</td>
                                 <td>{{ $activities->name }}</td>
-                                <td>{{ $activities->date }}</td>
+                                <td>{{ \Carbon\Carbon::parse($activities->date)->format('j F, Y') }}</td>
                                 <td>
                                     @if ($activities->status == "Rejected")
                                     <div class="badge bg-danger text-wrap" style="width: 6rem;">
@@ -52,19 +52,31 @@
                                     <div class="badge bg-success text-wrap" style="width: 6rem;">
                                         {{ $activities->status }}
                                     </div>
-                                    @else
+                                    @elseif ($activities->propose)
                                     <div class="badge bg-warning text-wrap text-dark" style="width: 6rem;">
                                         Pending
+                                    </div>
+                                    @else
+                                    <div class="badge bg-primary text-wrap text-light" style="width: 6rem;">
+                                        None
                                     </div>
                                     @endif
                                 </td>
                                 <td>
                                     <a href="{{ route('activity.show', $activities->id) }}"
                                         class="text-decoration-none btn btn-outline-success">View</a>
+                                   
+                                    @if ($activities->propose)
                                     <a href="{{ route('activity.edit', $activities->id) }}"
-                                        class="text-decoration-none btn btn-warning">Edit profile</a>
+                                        class="text-decoration-none btn btn-warning disabled">Edit activity</a>
                                     <a href="{{ route('propose.activity', $activities->id) }}"
-                                        class="text-decoration-none btn btn-primary">Propose</a>
+                                        class="text-decoration-none btn btn-primary disabled" >Propose</a>
+                                    @else
+                                    <a href="{{ route('activity.edit', $activities->id) }}"
+                                        class="text-decoration-none btn btn-warning">Edit activity</a>
+                                    <a href="{{ route('propose.activity', $activities->id) }}"
+                                        class="text-decoration-none btn btn-primary" >Propose</a>
+                                    @endif
                                     <a href="#" class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#ModalDelete{{ $activities->id }}">Delete</a>
                                 </td>
