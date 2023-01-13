@@ -1,4 +1,4 @@
-@extends('layout/master_activity')
+@extends('layouts.app')
 
 @section('content')
 
@@ -48,9 +48,13 @@
                                     <div class="badge bg-danger text-wrap" style="width: 6rem;">
                                         {{ $activities->status }}
                                     </div>
-                                    @else
+                                    @elseif ($activities->status == "Approved")
                                     <div class="badge bg-success text-wrap" style="width: 6rem;">
                                         {{ $activities->status }}
+                                    </div>
+                                    @else
+                                    <div class="badge bg-warning text-wrap text-dark" style="width: 6rem;">
+                                        Pending
                                     </div>
                                     @endif
                                 </td>

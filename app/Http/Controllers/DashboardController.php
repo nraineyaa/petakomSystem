@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Activity;
 
 use Illuminate\Http\Request;
 
@@ -11,22 +12,22 @@ class DashboardController extends Controller
     {
         $category = Auth::user()->category;
 
-        if ($category == 'Student') {
-            return view('dashboard.Student');
+        if ($category == 'student') {
+            return redirect()->route('activity.login');
         }
-        if ($category == 'Lecturer') {
+        if ($category == 'lecturer') {
             return view('dashboard.Lecturer');
         }
-        if ($category == 'Committee') {
+        if ($category == 'committee') {
             return view('dashboard.Committee');
         }
-        if ($category == 'Coordinator') {
+        if ($category == 'coordinator') {
             return view('dashboard.Coordinator');
         }
-        if ($category == 'Hosd') {
+        if ($category == 'hosd') {
             return view('dashboard.Hosd');
         }
-        if ($category == 'Dean') {
+        if ($category == 'dean') {
             return view('dashboard.Dean');
         }
     }

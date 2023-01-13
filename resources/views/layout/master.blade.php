@@ -29,7 +29,7 @@
                         <a class="nav-link active" aria-current="page" href="/homepage">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/activity">Activities</a>
+                        <a class="nav-link" aria-current="page" href="{{ route('proposed.activity') }}">Activities</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#">Calendar</a>
@@ -44,13 +44,13 @@
                         <a class="nav-link" aria-current="page" href="#">Election</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Bulletin</a>
+                        <a class="nav-link" aria-current="page" href="/bulletinUserPage">Bulletin</a>
                     </li>
                 </ul>
             </div>
             <div class="d-flex ms-auto gap-3">
-                <a href="#" class="btn btn-primary" type="button">Login</a>
-                <a href="#" class="btn btn-outline-primary" type="button">Register</a>
+                <a href="{{ route('login') }}" class="btn btn-primary" type="button">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-outline-primary" type="button">Register</a>
             </div>
         </div>
     </nav>

@@ -76,7 +76,6 @@ class ActivityController extends Controller
 
     public function proposeActivity($id)
     {
-
         $activity = Activity::find($id);
         $propose = new ProposeActivity();
         $pactivity = $activity->id;
@@ -112,5 +111,11 @@ class ActivityController extends Controller
         $activity->save();
 
         return back()->with('success', 'Successfully rejected');
+    }
+
+    public function showProposedActivity(){
+
+        $propose = ProposeActivity::all();
+        return view('activity.propose_activity', compact('propose'));
     }
 }
