@@ -103,7 +103,7 @@
                             </li>
                             <!-- Election -->
                             <li class="nav-item">
-                                <a class="nav-link" href="/bulletinUserPage">{{ __('Election') }}</a>
+                                <a class="nav-link" href="/homepage">{{ __('Election') }}</a>
                             </li>
                             <!--Bulletin -->
                             <li class="nav-item">
