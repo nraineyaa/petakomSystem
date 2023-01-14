@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// Route::get('/home', function(){
+//     return view('homepage');
+// });
+
 Route::get('/', [HomeController::class, 'homepage']);
 
 Auth::routes();

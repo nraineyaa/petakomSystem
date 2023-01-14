@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.master')
 
 @section('content')
 
@@ -25,11 +25,11 @@
                             @if (count($propose) > 0)
                             @foreach ($propose as $proposed)
                             <tr>
-                                <td>{{ $proposed->activity->id }}</td>
-                                <td>{{ $proposed->activity->name }}</td>
-                                <td>{{ $proposed->activity->date }}</td>
+                                <td>{{ $proposed->id }}</td>
+                                <td>{{ $proposed->name }}</td>
+                                <td>{{ $proposed->date }}</td>
                                 <td>
-                                    <a href="{{ route('activity.show', $proposed->activity->id) }}"
+                                    <a href="{{ route('activity.show', $proposed->id) }}"
                                         class="text-decoration-none btn btn-outline-success">View</a>
                                 </td>
                             </tr>

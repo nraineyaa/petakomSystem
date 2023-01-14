@@ -124,6 +124,7 @@ class ActivityController extends Controller
     public function showProposedActivity(){
 
         $propose = Activity::where('status', '=', 'Approved')->get();
+        // dd($propose);
         // $propose = ProposeActivity::all();
         return view('activity.propose_activity', compact('propose'));
     }
