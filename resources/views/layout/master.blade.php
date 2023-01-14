@@ -59,11 +59,12 @@
 
                         <div class="dropdown">
                             <span><a class="nav-link" aria-current="page" href="#">Election</a></span>
+                            
                             @if( auth()->user()->category == "Student")
                             <div id="myDropdown" class="dropdown-content">
-                                <a class="nav-link" aria-current="page" class="nav-link {{ request()->routeIs('election*') ? 'active' : '' }}" href="/studList">Vote for Election</a><br>
+                                <a class="nav-link" aria-current="page" class="nav-link {{ request()->routeIs('election*') ? 'active' : '' }}" href="{{ route('election.student.studList') }}">Vote for Election</a><br>
                                 <a class="nav-link" aria-current="page" href="{{ route('election.student.register') }}">Register for Election</a><br>
-                            </div>
+                            </div>o
                             @endif
 
                             @if( auth()->user()->category == "Committee")

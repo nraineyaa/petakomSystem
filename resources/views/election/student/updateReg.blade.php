@@ -9,18 +9,25 @@
 
                 <div class="card-body">
                     <center><input type="search" id="gsearch" name="gsearch" style="width:70%">
-                    <input type="submit"></center>
+                        <input type="submit">
+                    </center>
                 </div>
 
             </div><br>
-            <center><h2><strong>ELECTION REGISTRATION</strong></h2></center><br>
+            <center>
+                <h2><strong>VOTE FOR ELECTION</strong></h2>
+            </center>
+            <center>
+                <h4>Faculty of Computing</h4>
+            </center><br>
             <div class="card">
-
+                <div class="card-header">{{ __('Candidate Information') }}</div>
                 <div class="card-body">
-                <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf 
-                <center><table style="width:80%">
-                    <br><tr>
+
+                <form action="{{ route('update') }}" method="POST" enctype="multipart/form-data">
+                    <center>
+                        <table style="width:80%">
+                        <br><tr>
                             <th>Profile Image:</th>
                             <td><input type="file" id="myFile" name="profile_img"></td>
                         </tr>    
@@ -48,14 +55,18 @@
                             <th>Manifesto:</th>
                             <td style="width:70%"><textarea id="w3review" name="manifesto" rows="4" cols="50"></textarea></td>
                         </tr>
-                    </table></center><br>
-                    <center><input type="submit" style="width:70%; background-color:forestgreen; color:aliceblue"></center><br> <!--registration-->
-                    <center><button style="width:70%; background-color:firebrick; color:aliceblue">Cancel</button></center></form> <!--Go to dashboard.Student-->
-                    
+                        </table>
+                    </center><br>
+                    <center><button style="width:70%; background-color:forestgreen; color:aliceblue">Update Registration</button></center><br>
+                    <center><button style="width:70%; background-color:firebrick; color:aliceblue">Cancel Registration</button></center></form>
+
                 </div>
 
+
             </div>
+
         </div>
     </div>
+</div>
 </div>
 @endsection
