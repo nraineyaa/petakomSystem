@@ -21,11 +21,11 @@
   <!-- card body -->
   <div class="card-body">
         <!-- news title -->
-        <h1><b>{{ $bulletin->news_title }}</b></h1>
+        <h1 style="text-transform:uppercase;"><b>{{ $bulletin->news_title }}</b></h1>
         <!-- author name, date(created_at) -->
         <p>
           By <span style="text-transform:uppercase;font-weight:bold;">{{ $bulletin->author_name }}</span> 
-          - <span style="color:#4169E1;font-weight:bold;">{{ $bulletin->created_at->format('d/m/Y') }}</span>
+          - <span style="color:#4169E1;font-weight:bold;">{{date('d F, Y' ,strtotime($bulletin->created_at)) }}</span>
 
           <!-- edited status -->
         <?php 

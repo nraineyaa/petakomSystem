@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\BulletinModel;
+use Illuminate\Support\Facades\Auth;
 
 class BulletinController extends Controller
 {
@@ -24,16 +25,20 @@ class BulletinController extends Controller
     //store news data
     public function storeNews(Request $request)
     {
-
-        $Bulletin = new BulletinModel();
-
-        $Bulletin->author_name = $request->input('author_name');
-        $Bulletin->news_title = $request->input('news_title');
-        $Bulletin->news_description = $request->input('news_description');
-
-        $Bulletin->save();
-
-        return redirect('/committee/bulletin')->with('flash_message', 'News Created!');
+        if(Auth::check())
+        {
+            BulletinModel::create([
+                'committee_ID' => Auth::user()->id,
+                'author_name' => $request->author_name,
+                'news_title' => $request->news_title,
+                'news_description' => $request->news_description,
+            ]);
+            return redirect('/committee/bulletin')->with('flash_message', 'News Created!');
+        }
+        else
+        {
+            return redirect('/committee/bulletin')->with('flash_message', 'Something went wrong,Try again later');;
+        }
     }
 
     //edit existing news 

@@ -47,10 +47,10 @@
                                 @forelse($searchNews as $item)
                                     <tr>
                                     <td>
-                                        <span style="text-transform:capitalize;font-weight:bold;">{{ $item->news_title }}</span><br>
+                                        <span style="text-transform:uppercase;font-weight:bold;">{{ $item->news_title }}</span><br>
                                         By 
                                         <span style="text-transform:capitalize;font-weight:bold;">{{ $item->author_name }}</span> 
-                                        - <span style="color:#4169E1;font-weight:bold;">{{ $item->created_at->format('d/m/Y') }}</span>
+                                        - <span style="color:#4169E1;font-weight:bold;">{{date('d F, Y' ,strtotime($item->created_at)) }}</span>
                                     </td>
                                         <td>
                                             <!-- Buttons -->

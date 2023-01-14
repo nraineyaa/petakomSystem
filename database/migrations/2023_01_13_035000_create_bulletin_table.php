@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('bulletin', function (Blueprint $table) {
             $table->id();
+            
+            $table->unsignedBigInteger('committee_ID');
+            $table->foreign('committee_ID')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+
             $table->string('author_name');
             $table->string('news_title');
             $table->longText('news_description');
