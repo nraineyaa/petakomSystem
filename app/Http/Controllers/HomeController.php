@@ -31,6 +31,6 @@ class HomeController extends Controller
     public function homepage()
     {
         $bulletin = BulletinModel::orderBy('created_at','desc')->paginate(5);
-        return view ('homepage')->with('bulletin', $bulletin);
+        return view('homepage')->with('bulletin', $bulletin);
     }
 }

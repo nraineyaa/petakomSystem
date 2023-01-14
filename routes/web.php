@@ -19,17 +19,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-
-Route::get('/', function () {
-    return view('homepage');
-});
+Route::get('/', [HomeController::class, 'homepage']);
 
 Auth::routes();
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
-
-Route::get('/homepage', [HomeController::class, 'homepage']);
-
 
 Route::controller(CalenderController::class)->group(function(){
     Route::get('calendar-event', 'index');
