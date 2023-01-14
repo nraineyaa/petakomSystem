@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts.app')
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
@@ -21,8 +21,8 @@
                     :
                 </div>
                 <div class="col col-lg-6 text-start">
-                    {{-- {{Carbon::createFromFormat('H:i:s',$activity->time)->format('h:i')}} --}}
-                    {{ $activity->time }}
+                    {{ \Carbon\Carbon::createFromFormat('H:i:s',$activity->time)->format('h:i A')}}
+                    {{-- {{ $activity->time }} --}}
                 </div>
             </div>
             <div class="row justify-content-md-center fs-5">
@@ -33,7 +33,7 @@
                     :
                 </div>
                 <div class="col col-lg-6 text-start">
-                    {{ $activity->date }}
+                    {{ \Carbon\Carbon::parse($activity->date)->format('j F, Y') }}
                 </div>
             </div>
             <div class="row justify-content-md-center fs-5">

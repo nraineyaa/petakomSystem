@@ -1,4 +1,4 @@
-@extends('layout.master_activity')
+@extends('layouts.app')
 
 
 @section('content')

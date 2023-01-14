@@ -30,8 +30,8 @@ class ActivityController extends Controller
     // 
     public function showActivity()
     {
-
         $activity = Activity::all();
+        
         return view(('activity.activity_login'), compact('activity'));
     }
 
@@ -60,7 +60,12 @@ class ActivityController extends Controller
     {
 
         $activity = Activity::find($id);
+        $proposed = ProposeActivity::where('activity_id', '=', $activity->id);
+        $proposed->delete();
+
         $activity->update($request->all());
+        $activity->status = "";
+        $activity->save();
 
         return redirect()->route('activity.login')->with('success', 'Successfully updated');
     }
@@ -76,21 +81,22 @@ class ActivityController extends Controller
 
     public function proposeActivity($id)
     {
-
         $activity = Activity::find($id);
         $propose = new ProposeActivity();
         $pactivity = $activity->id;
-        $check = ProposeActivity::where([
+        $exist = ProposeActivity::where([
             ['activity_id', '=', $pactivity]
         ])->first();
 
-        if($check){
+
+        if($exist){
             return back()->with('error', 'Already proposed');
         }
 
         $propose->activity_id = $activity->id;
         $propose->save();
 
+        
         return back()->with('success', 'Successfully proposed');
     }
 
@@ -107,10 +113,18 @@ class ActivityController extends Controller
     public function rejectActivity($id){
 
         $activity = Activity::find($id);
-
+       
         $activity->status = "Rejected";
         $activity->save();
 
+
         return back()->with('success', 'Successfully rejected');
+    }
+
+    public function showProposedActivity(){
+
+        $propose = Activity::where('status', '=', 'Approved')->get();
+        // $propose = ProposeActivity::all();
+        return view('activity.propose_activity', compact('propose'));
     }
 }
