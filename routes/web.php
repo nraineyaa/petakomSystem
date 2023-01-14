@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\BulletinController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +30,11 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/homepage', [HomeController::class, 'homepage']);
 
+
+Route::controller(CalenderController::class)->group(function(){
+    Route::get('calendar-event', 'index');
+    Route::post('calendar-crud-ajax', 'ajax');
+});
 
 
 //----------------------------- ACTIVITY MODULE ----------------------------//
