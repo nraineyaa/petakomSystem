@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0 text-center">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/homepage">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('proposed.activity') }}">Activities</a>
