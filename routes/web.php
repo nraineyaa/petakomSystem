@@ -29,9 +29,12 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/homepage', [HomeController::class, 'homepage']);
 
+
+
 //----------------------------- ACTIVITY MODULE ----------------------------//
 Route::controller(ActivityController::class)->group(function () {
-    // general page
+    
+    //Group of view for role student and lecturer
     Route::group(['middleware' => ['auth', 'user:student,lecturer']], function () {
         Route::get('/showactivity_login', 'showActivity')->name('activity.login');
         Route::get('/createactivity', 'createActivity')->name('activity.create');
@@ -43,15 +46,22 @@ Route::controller(ActivityController::class)->group(function () {
         
     });
 
-    Route::get('/showactivity/{id}', 'show')->name('activity.show');
-    Route::get('/showactivityproposed', 'showProposedActivity')->name('proposed.activity');
-
+    //Group of view for role commiittee
     Route::group(['middleware' => ['auth', 'user:committee']], function () {
         Route::get('/petakompage', 'activityProposed')->name('petakom.page');
         Route::get('/approveActivity/{id}', 'approveActivity')->name('propose.approve');
         Route::get('/rejectActivity/{id}', 'rejectActivity')->name('propose.reject');
     });
+
+    // can be view by all role
+    Route::get('/showactivity/{id}', 'show')->name('activity.show');
+    Route::get('/showactivityproposed', 'showProposedActivity')->name('proposed.activity');
+
+   
 });
+
+
+
 
 //----------------------------- BULLETIN MODULE ----------------------------//
 Route::controller(BulletinController::class)->group(function () {

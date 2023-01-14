@@ -18,6 +18,7 @@
                         <th scope="col">Activity</th>
                         <th scope="col">Organizer</th>
                         <th scope="col">Date</th>
+                        <th>kontol</th>
                         <th></th>
                     </tr>
                 </thead>

@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body fixed-top">
         <div class="container">
-            <a class="navbar-brand me-auto" href="/homepage">
+            <a class="navbar-brand me-auto" href="/">
                 <img src="{{ asset('image/petakom.png') }}" alt="petakom-logo" style="width: 75px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0 text-center">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/homepage">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('proposed.activity') }}">Activities</a>

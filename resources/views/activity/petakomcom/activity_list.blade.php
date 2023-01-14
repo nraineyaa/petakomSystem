@@ -43,7 +43,7 @@
                             <tr class="align-middle">
                                 <td>{{ $activities->id }}</td>
                                 <td>{{ $activities->activity->name }}</td>
-                                <td>{{ $activities->activity->date }}</td>
+                                <td>{{ \Carbon\Carbon::parse($activities->activity->date)->format('j F, Y') }}</td>
                                 <td>
                                     @if ($activities->activity->status == "Rejected")
                                     <div class="badge bg-danger text-wrap" style="width: 6rem;">
