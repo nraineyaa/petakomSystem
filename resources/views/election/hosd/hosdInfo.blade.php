@@ -15,7 +15,7 @@
 
             </div><br>
             <center>
-                <h2><strong>ELECTION HOSD & COORDINATOR VIEW</strong></h2>
+                <h2><strong>ELECTION INFO FOR COORDINATOR</strong></h2>
             </center>
             <center>
                 <h4>Faculty of Computing</h4>
@@ -54,8 +54,6 @@
                             </tr>
                         </table>
                     </center><br>
-                    <center><button style="width:70%; background-color:forestgreen; color:aliceblue">Accept the Registration</button></center><br>
-                    <center><button style="width:70%; background-color:firebrick; color:aliceblue">Reject the Registration</button></center> <!--KELUAR REMARKS OF REJECT-->
 
                 </div>
 
