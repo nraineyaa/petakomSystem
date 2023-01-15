@@ -14,7 +14,9 @@ class ElectionController extends Controller
 
         $election = DB::table('election')
         ->orderBy('id','desc')
+        ->where('status','Approved')
         ->get();
+        
 
         return view('election.student.studList', compact('election')); //List for vote (DISPLAY)
     }
@@ -36,7 +38,13 @@ class ElectionController extends Controller
     }
     public function hosdList()
     { // List for Committee
-        return view('election.hosd.hosdList');
+        $election = DB::table('election')
+        ->orderBy('id','desc')
+        ->where('status','Pending')
+        ->get();
+        
+
+        return view('election.hosd.hosdList', compact('election'));
     }
     public function hosdInfo()
     { //Info for Committee
@@ -112,8 +120,13 @@ class ElectionController extends Controller
         ->with('Success', 'Election registration has been deleted');
     }
 
-    public function approval(Request $request, Election $election)
+    public function approval($id)
     {
+        $election = Election::find($id);
+        $election->status="Approved";
         
+        $election->update();
+        return redirect()->route('election.hosd.hosdlist');
+
     }
 }
