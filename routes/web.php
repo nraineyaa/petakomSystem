@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,6 +38,13 @@ Route::controller(ActivityController::class)->group(function(){
     Route::get('/editactivity', 'editActivity')->name('activity.edit');
 });
 
+Route::controller(UserController::class)->group(function(){ 
+    Route::get('/myProfile', 'index')->name('myProfile.page');
+    Route::get('/userList', 'userList')->name('userList.page');
+    Route::get('/showactivity_login', 'showActivity')->name('activity.login');
+    Route::get('/createactivity', 'createActivity')->name('activity.create');
+    Route::get('/editactivity', 'editActivity')->name('activity.edit');
+});
 
 Route::controller(App\Http\Controllers\ElectionController::class)->group(function(){
     Route::get('/studList', 'vote')->name('election.student.studList');

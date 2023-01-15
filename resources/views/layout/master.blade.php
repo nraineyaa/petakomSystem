@@ -59,7 +59,7 @@
 
                         <div class="dropdown">
                             <span><a class="nav-link" aria-current="page" href="#">Election</a></span>
-                            
+
                             @if( auth()->user()->category == "Student")
                             <div id="myDropdown" class="dropdown-content">
                                 <a class="nav-link" aria-current="page" class="nav-link {{ request()->routeIs('election*') ? 'active' : '' }}" href="{{ route('election.student.studList') }}">Vote for Election</a><br>
@@ -79,63 +79,73 @@
                             </div>
                             @endif
 
-                    <!--tambah COMMITTEE & HOSD punya function-->
-                    <!--guna IF ELSE-->
+                            <!--tambah COMMITTEE & HOSD punya function-->
+                            <!--guna IF ELSE-->
 
+                        </div>
+                    </li>
+                    @endif
+
+                    @if( auth()->user()->category == "Committee" || auth()->user()->category == "HOSD" )
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Calendar</a>
+                    </li>
+                    @endif
+
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Report</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Bulletin</a>
+                    </li>
+                </ul>
             </div>
-            </li>
-            @endif
+            <div class="d-flex ms-auto gap-3">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                    @if (Route::has('login'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @endif
 
-            @if( auth()->user()->category == "Committee" || auth()->user()->category == "HOSD" )
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Calendar</a>
-            </li>
-            @endif
-
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Report</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Bulletin</a>
-            </li>
-            </ul>
-        </div>
-        <div class="d-flex ms-auto gap-3">
-            <ul class="navbar-nav ms-auto">
-                <!-- Authentication Links -->
-                @guest
-                @if (Route::has('login'))
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
-                @endif
-
-                @if (Route::has('register'))
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                </li>
-                @endif
-                @else
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }}
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                    @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                    @endif
+                    @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
                         </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-                @endguest
-            </ul>
-        </div>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                            @if( auth()->user()->category == "Coordinator")
+                            <a class="dropdown-item" href="{{ route('userList.page') }}">
+                                {{ __('List of User') }}
+                            </a>
+                            @endif
+                            <a class="dropdown-item" href="{{ route('myProfile.page') }}">
+                                {{ __('My Profile') }}
+                            </a>
+
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    @endguest
+                </ul>
+            </div>
         </div>
     </nav>
 
