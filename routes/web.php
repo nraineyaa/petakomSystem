@@ -50,4 +50,5 @@ Route::controller(App\Http\Controllers\ElectionController::class)->group(functio
     Route::post('/store', 'store')->name('store');
     Route::get('/show', 'show')->name('show');
     Route::get('/update', 'update')->name('update');
+    Route::get('/approval/{id}', 'approval')->name('approval');
 });
