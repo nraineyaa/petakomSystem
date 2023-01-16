@@ -5,81 +5,128 @@ use Illuminate\Http\Request;
 use App\Models\ProposalModel;
 use App\Models\ProposeProposal;
 
+
 class ProposalController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+{      
+    public function HOSDProposalProposed()
     {
-        //
+        $proposal = ProposeProposal::all();
+        return view('proposal.proposal_listHOSD', compact('proposal'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function CoordinatorProposalProposed()
     {
-        //
+        $proposal = ProposeProposal::all();
+        return view('proposal.proposal_listCorodinator', compact('proposal'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function DeanProposalProposed()
     {
-        //
+        $proposal = ProposeProposal::all();
+        return view('proposal.proposal_listDean', compact('proposal'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function store(ProposalRequest $request)
+    {
+        Proposal::create($request->all());
+        //check balik
+
+        return redirect()->route('proposal.view')->with('success', 'Successfully added');
+    }
+
+    public function showProposal()
+    {
+        //proposal view
+        $proposal = ProposalModel::all();
+        return view('proposal.proposal_view', compact('proposal'));
+    }
+
     public function show($id)
     {
-        //
+        //proposal view
+        $proposal = Proposal::find($id);
+        return view('proposal.show_proposal', compact('proposal'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function createProposal($id)
     {
-        //
+        return view('proposal.create_proposal');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function editProposal($id)
     {
-        //
+        $proposal = Proposal::find($id);
+        return view('proposal.edit_proposal', compact('proposal'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $proposal = Proposal::find($id);
+        $proposal->delete();
+
+        return back()->with('success', 'Successfully deleted');
+    }
+
+    public function HOSDapproveProposal($id){
+
+        $proposal = Proposal::find($id);
+
+        $proposal->statusbyHOSD = "Approved";
+        $proposal->save();
+        
+        return back()->with('success', 'Successfully approved');
+    }
+
+    public function HOSDrejectProposal($id){
+
+        $proposal = Proposal::find($id);
+       
+        $proposal->statusbyHOSD = "Rejected";
+        $proposal->save();
+
+
+        return back()->with('success', 'Successfully rejected');
+    }
+
+    public function CoordinatorapproveProposal($id){
+
+        $proposal = Proposal::find($id);
+
+        $proposal->statusbyCoordinator = "Approved";
+        $proposal->save();
+        
+        return back()->with('success', 'Successfully approved');
+    }
+
+    public function CoordinatorrejectProposal($id){
+
+        $proposal = Proposal::find($id);
+       
+        $proposal->statusbyCoordinator = "Rejected";
+        $proposal->save();
+
+
+        return back()->with('success', 'Successfully rejected');
+    }
+
+    public function DeanconfirmProposal($id){
+
+        $proposal = Proposal::find($id);
+
+        $proposal->statusbyDean = "Confirm";
+        $proposal->save();
+        
+        return back()->with('success', 'Successfully Confirm');
+    }
+
+    public function DeandenyProposal($id){
+
+        $proposal = Proposal::find($id);
+       
+        $proposal->statusbyDean = "Deny";
+        $proposal->save();
+
+
+        return back()->with('success', 'Successfully deny');
     }
 }

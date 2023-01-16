@@ -4,64 +4,135 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ReportModel;
+use App\Models\ProposeReport;
 
 class ReportController extends Controller
 {
-    public function indexReportCreator()
-    { //main report page for student, lecturer, committee
-        $reports = ReportModel::orderBy('created_at')->get();
-        return view('report.ReportCreatorPage')->with('reports', $reports);
-    }
-    public function indexReportHOSDCoordinator()
-    { //main report page for student, lecturer, committee
-        $reports = ReportModel::orderBy('created_at')->get();
-        return view('report.ReportHOSDCoordinator')->with('reports', $reports);
-    }
-    public function indexReportDean()
-    { //main report page for student, lecturer, committee
-        $reports = ReportModel::orderBy('created_at')->get();
-        return view('report.ReportDean')->with('reports', $reports);
-    }
-
-
-    public function storeReport(Request $request)
+    //To view the page for HOSD
+    public function ReportProposedHOSD()
     {
-        $Report = new ReportModel();
-        $Report->report_title = $request->input('report_title');
-        $Report->report_date = $request->input('report_date');
-        $Report->report_objectives = $request->input('report_objectives');
-        $Report->report_description = $request->input('report_description');
+        $report = ProposeReport::all();
+        return view('report.report_listHOSD', compact('report'));
 
-        $Report->save();
-
-        return redirect('/ReportCreator')->with('flash_message', 'Report Created!'); 
+    }
+    //To view page for Coordinator
+    public function ReportProposedCoordinator()
+    { 
+        $report = ProposeReport::all();
+        return view('report.report_listCoordinator', compact('report'));
+    }
+    //To view page for Dean
+    public function ReportProposedDean()
+    { 
+        $report = ProposeReport::all();
+        return view('report.report_listDean', compact('report'));
     }
 
-    public function approveReportbyHOSD($id){
+    public function show($id)
+    {
+        //view details of the report
+        $report = Report::find($id);
+        return view('report.show_report', compact('report'));
+    }
 
-        $reports = Report::find($id);
+    public function showReport()
+    {
+        $report = Report::all();
+        return view(('report.report_view'), compact('report'));
+    }
 
-        $reports->HOSDApproval = "Approved";
-        $activity->save();
-        
+
+    public function createReport()
+    {
+         return view('report.create_report');
+    }
+
+    public function editReport($id)
+    {
+        $report = Report::find($id);
+        return view('report.edit_report', compact('report'));
+
+    }
+    public function store(ReportRequest $request)
+    {
+        Report::create($request->all());
+        return redirect()->route('report.view')->with('success', 'Successfully added');
+    }
+    public function update(ReportRequest $request, $id)
+    {
+        $report = Report::find($id);
+        $reportSubmit = SubmitReport::where('report_id', '=', $report->id);
+        $reportSubmit->delete();
+
+        $report->update($request->all());
+        $report->statusapprovalbyHOSD = "";
+        $report->statusapprovalbyCoordinator = "";
+        $report->statusapprovalbyDean = "";
+
+        return redirect()->route('report.view')->with('success', 'Successfully updated');
+    }
+
+    public function destroy($id)
+    {
+        $report = Report::find($id);
+        $report->delete();
+        $report->submit->delete();
+
+        return back ()->with('success', 'Successfully deleted');
+    }
+
+    public function approveReportHOSD($id)
+    {
+        $report = Report::find($id);
+        $report->statusbyHOSD = "Approved";
+        $report->save();
+
         return back()->with('success', 'Successfully approved');
     }
-    public function approveReportCoordinator($id){
 
-        $reports = Report::find($id);
+    public function RejectReportHOSD($id)
+    {
+        $report = Report::find($id);
+        $report->statusbyHOSD = "Rejected";
+        $report->save();
 
-        $reports->CoordinatorApproval = "Approved";
-        $activity->save();
-        
+        return back()->with('success', 'Successfully rejected');
+    }
+
+
+    public function approveReportCoordinator($id)
+    {
+        $report = Report::find($id);
+        $report->statusbyCoordinator = "Approved";
+        $report->save();
+
         return back()->with('success', 'Successfully approved');
     }
-    public function approveReportDean($id){
 
-        $reports = Report::find($id);
+    public function RejectReportCoordinator($id)
+    {
+        $report = Report::find($id);
+        $report->statusbyCoordinator = "Rejected";
+        $report->save();
 
-        $reports->DeanApproval = "Approved";
-        $activity->save();
-        
-        return back()->with('success', 'Successfully approved');
+        return back()->with('success', 'Successfully rejected');
+    }
+
+    public function confirmReportDean($id)
+    {
+        $report = Report::find($id);
+        $report->statusbyDean = "Confirm";
+        $report->save();
+
+        return back()->with('success', 'Successfully confirm');
+    }
+
+    public function DenyReportCoordinator($id)
+    {
+        $report = Report::find($id);
+        $report->statusbyDean = "Confirm";
+        $report->save();
+
+        return back()->with('success', 'Successfully deny');
     }
 }
