@@ -5,6 +5,8 @@ use App\Http\Controllers\BulletinController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProposalController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,11 +21,19 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/home', function(){
-//     return view('homepage');
+Route::get('/testpage', function(){
+    return view('welcome');
+});
+
+// Route::get('/test', function(){
+//     return "HELLO";
 // });
 
-Route::get('/', [HomeController::class, 'homepage']);
+// Route::get('/', [HomeController::class, 'homepage']);
+
+// Route::get('/', function(){
+//     return view('activity.propose_activity');
+// });
 
 Auth::routes();
 
@@ -59,9 +69,7 @@ Route::controller(ActivityController::class)->group(function () {
 
     // can be view by all role
     Route::get('/showactivity/{id}', 'show')->name('activity.show');
-    Route::get('/showactivityproposed', 'showProposedActivity')->name('proposed.activity');
-
-   
+    Route::get('/showactivityproposed', 'showProposedActivity')->name('proposed.activity');   
 });
 
 
@@ -109,3 +117,72 @@ Route::controller(BulletinController::class)->group(function () {
         Route::get('/bulletin/{id}/delete', 'deleteNews');
     });
 });
+
+    //----------------------------- PROPOSAL MODULE ----------------------------//
+    Route::controller(ProposalController::class)->group(function () {
+        //For student, lecturer and petakom committee
+        Route::group(['middleware' => ['auth', 'user:student,lecturer,committee']], function () {
+            Route::get('/showproposal_view', 'showProposal')->name('proposal.view');
+            Route::get('/createproposal', 'createProposal')->name('proposal.create');
+            Route::get('/editproposal/{id}', 'editProposal')->name('proposal.edit');
+            Route::post('storeproposal', 'store')->name('store.proposal');
+            Route::post('/updateproposal/{id}', 'update')->name('update.proposal');
+            Route::post('/deleteproposal/{id}', 'destroy')->name('destroy.proposal');
+        });
+        //For HOSD
+        Route::group(['middleware' => ['auth', 'user:headofdevelopment']], function () {
+            Route::get('/ProposalHOSDpage', 'activityProposed')->name('ProposalHOSD.page');
+            Route::get('/HOSDapproveProposal/{id}', 'HOSDapproveProposal')->name('ProposalHOSD.approve');
+            Route::get('/HOSDdeclineProposal/{id}', 'HOSDrejectProposal')->name('ProposalHOSD.reject');
+        });
+        //For Coordinator
+        Route::group(['middleware' => ['auth', 'user:coordinator']], function () {
+            Route::get('/ProposalCoordinatorpage', 'activityProposed')->name('ProposalCoordinator.page');
+            Route::get('/CoordinatorapproveProposal/{id}', 'CoordinatorapproveProposal')->name('ProposalCoordinator.approve');
+            Route::get('/CoordinatordeclineProposal/{id}', 'CoordinatorrejectProposal')->name('ProposalCoordinator.reject');
+        });
+        //For Dean
+        Route::group(['middleware' => ['auth', 'user:dean']], function () {
+            Route::get('/ProposalDeanpage', 'activityProposed')->name('ProposalDean.page');
+            Route::get('/DeanconfirmProposal/{id}', 'DeanconfirmProposal')->name('ProposalDean.confirm');
+            Route::get('/DeandenyProposal/{id}', 'DeandenyProposal')->name('ProposalDean.deny');
+        });
+});
+
+//----------------------------- REPORT MODULE ----------------------------//
+Route::controller(ReportController::class)->group(function () {
+    
+    //Group of view for role student and lecturer, committee
+    Route::group(['middleware' => ['auth', 'user:student,lecturer, committee']], function () {
+        Route::get('/showreport_view', 'showReport')->name('report.view');
+        Route::get('/createreport', 'createReport')->name('report.create');
+        Route::get('/edireport/{id}', 'editReport')->name('report.edit');
+        Route::post('storereport', 'store')->name('store.report');
+        Route::post('/updatereport/{id}', 'update')->name('update.report');
+        Route::post('/deletereport/{id}', 'destroy')->name('destroy.report');
+    });
+    //Group of view for role head of development
+    Route::group(['middleware' => ['auth', 'user:headofdevelopment']], function () {
+        Route::get('/HOSDpage', 'ReportProposedHOSD')->name('HOSD.page');
+        Route::get('/approveHOSDReport/{id}', 'approveReportHOSD')->name('ReportHOSD.approve');
+        Route::get('/rejectHOSDReport/{id}', 'rejectReportHOSD')->name('ReportHOSD.reject');     
+    });
+    
+    //Group of view for role coordinator
+    Route::group(['middleware' => ['auth', 'user:coordinator']], function () {
+        Route::get('/Coordinatorpage', 'ReportProposedCoordinator')->name('Coordinator.page');
+        Route::get('/approveCoordinatorReport/{id}', 'approveReportCoordinator')->name('ReportCoordinator.approve');
+        Route::get('/rejectCoordinatorReport/{id}', 'rejectReportCoordinator')->name('ReportCoordinator.reject');     
+    });
+
+    //Group of view for role dean
+    Route::group(['middleware' => ['auth', 'user:dean']], function () {
+        Route::get('/Deanpage', 'ReportProposedDean')->name('Dean.page');
+        Route::get('/confirmDeanReport/{id}', 'confirmReportDean')->name('ReportDean.confirm');
+        Route::get('/denyDeanReport/{id}', 'denyReportDean')->name('ReportDean.deny');     
+    });
+});
+
+
+
+

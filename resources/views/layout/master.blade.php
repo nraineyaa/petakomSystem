@@ -43,10 +43,10 @@
                         <a class="nav-link" aria-current="page" href="/calendar-event">Calendar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Proposal</a>
+                        <a class="nav-link" aria-current="page" href="{{ route('proposal.view') }}">Proposal</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Report</a>
+                        <a class="nav-link" aria-current="page" href="{{ route('report.view') }}">Report</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#">Election</a>
