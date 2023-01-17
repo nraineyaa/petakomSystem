@@ -8,6 +8,8 @@
 <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
+<title>Petakom | List of User </title>
+<link rel="shortcut icon" href="bootstrap1/assets/images/logo/logo.png" type="image/svg" />
 
 <script>
     $(document).ready(function() {
@@ -41,16 +43,19 @@
     <div class="container" width="100px">
         <div class="overflow-auto" style="overflow:auto;">
             <div class="table-responsive">
-
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <div class="col-lg-2 col-md-2 col-sm-2" style="float: right;">
+                <a class="btn btn-success" style="float: right; width:100%;" role="button" href="{{ route('register') }}">
+                    <i class="fas fa-plus"></i>&nbsp; Add New User</a>
+            </div>
+                <table class="table table-bordered" id="dataTable" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Short Name</th>
                             <th>Position</th>
                             <th>Contact No</th>
-                            <th>Email</th>
-                            <td></td>
+                            <th style="width:30px">Email</th>
+                            <th style="width:30px">Action</th>
                         </tr>
                     </thead>
                     <tbody>

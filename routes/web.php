@@ -41,7 +41,7 @@ Route::controller(ActivityController::class)->group(function(){
 Route::controller(UserController::class)->group(function(){ 
     Route::get('/myProfile', 'index')->name('myProfile.page');
     Route::get('/userList', 'userList')->name('userList.page');
-    Route::get('/showactivity_login', 'showActivity')->name('activity.login');
+    Route::get('/registerUser', 'registerUser')->name('registerUser');
     Route::get('/createactivity', 'createActivity')->name('activity.create');
     Route::get('/editactivity', 'editActivity')->name('activity.edit');
 });
