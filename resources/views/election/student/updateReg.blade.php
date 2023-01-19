@@ -24,37 +24,40 @@
                 <div class="card-header">{{ __('Candidate Information') }}</div>
                 <div class="card-body">
 
-                <form action="{{ route('update') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('update',$election ->id) }}" method="POST" enctype="multipart/form-data">
                     <center>
+                        @csrf
+                        @method('PUT')
                         <table style="width:80%">
                         <br><tr>
                             <th>Profile Image:</th>
-                            <td><input type="file" id="myFile" name="profile_img"></td>
+                            <td><input type="file" id="myFile" name="profile_img" required></td>
                         </tr>    
                     <tr>
                             <th>Student ID:</th>
-                            <td><input type="text" id="name" name="student_ID" style="width:100%"></td> 
+                            <td><input type="text" id="name" name="student_ID"a style="width:100%" value="{{$election ->student_ID}}" required></td> 
                         </tr>
                         <tr>
                             <th>Name:</th>
-                            <td><input type="text" id="year" name="full_name" style="width:100%"></td>
+                            <td><input type="text" id="year" name="full_name" style="width:100%" value="{{$election ->full_name}}" required></td>
                         </tr>
                         <tr>
                             <th>Current Semester:</th>
-                            <td><input type="text" id="address" name="crt_semester" style="width:100%"></td>
+                            <td><input type="text" id="address" name="crt_semester" style="width:100%" value="{{$election ->crt_semester}}" required></td>
                         </tr>
                         <tr>
                             <th>Current Result:</th>
-                            <td><input type="text" id="phone" name="crt_result" style="width:100%"></td>
+                            <td><input type="text" id="phone" name="crt_result" style="width:100%" value="{{$election ->crt_result}}" required></td>
                         </tr>
                         <tr>
                             <th>Previous Activities:</th>
-                            <td><input type="text" id="phone" name="prv_activities" style="width:100%"></td>
+                            <td><input type="text" id="phone" name="prv_activities" style="width:100%" value="{{$election ->prv_activities}}" required></td>
                         </tr>
                         <tr>
                             <th>Manifesto:</th>
-                            <td style="width:70%"><textarea id="w3review" name="manifesto" rows="4" cols="50"></textarea></td>
+                            <td style="width:70%"><textarea id="w3review" name="manifesto" rows="4" cols="50" required>{{$election ->manifesto}}</textarea></td>
                         </tr>
+                        
                         </table>
                     </center><br>
                     <center><button style="width:70%; background-color:forestgreen; color:aliceblue">Update Registration</button></center><br>

@@ -13,8 +13,11 @@ class Election extends Model //extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'election';
+
     protected $fillable = [
         'id',
+        'user_id',
         'profile_img',
         'student_ID',
         'full_name',

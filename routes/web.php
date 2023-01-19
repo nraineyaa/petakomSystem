@@ -41,7 +41,7 @@ Route::controller(App\Http\Controllers\ElectionController::class)->group(functio
     Route::get('/studList', 'vote')->name('election.student.studList');
     Route::get('/register', 'register')->name('election.student.register');
     Route::get('/registration', 'registration')->name('election.student.registration');
-    Route::get('/updateReg', 'updateReg')->name('election.student.updateReg');
+    Route::get('/updateReg/{id}', 'updateReg')->name('election.student.updateReg');
     Route::get('/comList', 'comList')->name('election.committee.comList');
     Route::get('/comInfo', 'comInfo')->name('election.committee.comInfo');
     Route::get('/hosdList', 'hosdList')->name('election.hosd.hosdList');
@@ -49,6 +49,7 @@ Route::controller(App\Http\Controllers\ElectionController::class)->group(functio
 
     Route::post('/store', 'store')->name('store');
     Route::get('/show', 'show')->name('show');
-    Route::get('/update', 'update')->name('update');
+    Route::put('/update/{id}', 'update')->name('update');
     Route::get('/approval/{id}', 'approval')->name('approval');
+    Route::get('/destroy/{id}', 'destroy')->name('destroy');
 });

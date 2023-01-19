@@ -64,7 +64,7 @@
                             <div id="myDropdown" class="dropdown-content">
                                 <a class="nav-link" aria-current="page" class="nav-link {{ request()->routeIs('election*') ? 'active' : '' }}" href="{{ route('election.student.studList') }}">Vote for Election</a><br>
                                 <a class="nav-link" aria-current="page" href="{{ route('election.student.register') }}">Register for Election</a><br>
-                            </div>o
+                            </div>
                             @endif
 
                             @if( auth()->user()->category == "Committee")

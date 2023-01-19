@@ -43,7 +43,7 @@
                                 <td>{{ $data->full_name }}</td>
                                 <td>{{ $data->crt_semester }}</td>
                                 <td>{{ $data->status }}</td>
-                                <td><a class="btn btn-success" href="/studList">View Details</a></td> <!--go to details page-->
+                                <td><a class="btn btn-success" href="{{ route('election.student.updateReg', $data->id) }}">View Details</a></td> <!--go to details page-->
                             </tr> 
                             @endforeach
                         </tbody>
