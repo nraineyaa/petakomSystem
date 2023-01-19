@@ -15,16 +15,25 @@
                         <li class="list-group-item p-3">
                             <div class="row">
                                 <div class="col">
-                                    <form action="{{ route('registerUser') }} " enctype="multipart/form-data" method="POST" id="formNew" onsubmit="upload()">
+                                    <form action="{{ route('addUser') }} " enctype="multipart/form-data" method="POST" id="formNew" onsubmit="upload()">
                                         @csrf
                                         <input type="text" class="form-control" value="addtech" id="addTech" name="addTech" hidden>
 
                                         <div class="form-row">
                                             <div class="form-group col-md-12">
-                                                <label for="email">Username</label>
+                                                <label for="username">Username</label>
                                                 <input type="text" class="form-control" id="username" name="username" placeholder="username" required>
                                             </div>
                                         </div>
+
+                                        <br>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label for="email">Student Email </label>
+                                                <input type="text" class="form-control" id="email" name="email" placeholder="email" required>
+                                            </div>
+                                        </div>
+
 
                                         <br>
 
@@ -40,8 +49,8 @@
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="password-confirm">{{ __('Confirm Password') }}</label>
-                                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                                                <label for="confirmPass">{{ __('Confirm Password') }}</label>
+                                                <input id="confirmPass" type="password" class="form-control" name="confirmPass" required autocomplete="new-password" placeholder="Confirm Password">
                                                 @error('password')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -56,29 +65,29 @@
                                         <div class="row">
                                             <div class="form-group col-md-6">
                                                 <label for="name">First Name</label>
-                                                <input type="text" class="form-control" id="fname" name="fname" placeholder="Name" required>
+                                                <input type="text" class="form-control" id="Fname" name="Fname" placeholder="Name" required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="name">Last Name</label>
-                                                <input type="text" class="form-control" id="lname" name="lname" placeholder="Name" required>
+                                                <input type="text" class="form-control" id="Lname" name="Lname" placeholder="Name" required>
                                             </div>
                                         </div>
                                         <br>
 
                                         <div class="row">
                                             <div class="form-group col-md-6">
-                                                <label for="icNumber">Phone Number</label>
-                                                <input type="text" class="form-control" id="phonenumber" name="phonenumber" placeholder="Phone Number" required>
+                                                <label for="phoneNum">Phone Number</label>
+                                                <input type="text" class="form-control" id="phoneNum" name="phoneNum" placeholder="Phone Number" required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="position">User Type</label>
-                                                <select class="form-select" name="userType" id="userType">
-                                                    <option value="student">Student</option>
-                                                    <option value="lect">Lecturer</option>
-                                                    <option value="committee">Committee</option>
-                                                    <option value="hosd">HOSD</option>
-                                                    <option value="dean">Dean</option>
-                                                    <option value="coordinator">Coordinator</option>
+                                                <select class="form-select" name="category" id="category">
+                                                    <option value="Student">Student</option>
+                                                    <option value="Lecturer">Lecturer</option>
+                                                    <option value="Committee">Committee</option>
+                                                    <option value="HOSD">HOSD</option>
+                                                    <option value="Dean">Dean</option>
+                                                    <option value="Coordinator">Coordinator</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -86,15 +95,15 @@
                                         <br>
                                         <div class="row">
                                             <div class="form-group col-md-12">
-                                                <label for="icNumber">Address</label>
-                                                <input type="text" class="form-control" id="icNumber" name="icNumber" placeholder="Address" required>
+                                                <label for="address">Address</label>
+                                                <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
                                             </div>
                                         </div>
 
                                         <br>
                                         <div style="float: right;">
                                             <a href="{{ url()->previous() }}" class="btn btn-danger btn-md">Cancel</a>
-                                            <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
+                                            <button type="submit" id="formNew" class="btn btn-primary">Register</button>
                                         </div>
 
                                     </form>

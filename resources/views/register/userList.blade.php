@@ -1,12 +1,18 @@
 @extends('layout.master')
 
+<head>
 
-<script src="{{ asset('frontend') }}/js/jquery.dataTables.js"></script>
-<script src="{{ asset('frontend') }}/js/dataTables.bootstrap4.js"></script>
+<script src="//code.jquery.com/jquery-3.5.1.js"></script>
+<script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap4.min.js"></script>
 
-<script src="//code.jquery.com/jquery-1.12.3.js"></script>
-<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" media="screen">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap4.min.css">
+
+
+
+<!-- sweet alert fire -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <title>Petakom | List of User </title>
 <link rel="shortcut icon" href="bootstrap1/assets/images/logo/logo.png" type="image/svg" />
@@ -33,6 +39,7 @@
     });
 </script>
 
+</head>
 @section('content')
 
 <center>
@@ -43,68 +50,39 @@
     <div class="container" width="100px">
         <div class="overflow-auto" style="overflow:auto;">
             <div class="table-responsive">
-            <div class="col-lg-2 col-md-2 col-sm-2" style="float: right;">
-                <a class="btn btn-success" style="float: right; width:100%;" role="button" href="{{ route('register') }}">
-                    <i class="fas fa-plus"></i>&nbsp; Add New User</a>
-            </div>
+                <div class="col-lg-2 col-md-2 col-sm-2" style="float: right;">
+                    <a class="btn btn-success" style="float: right; width:100%;" role="button" href="{{ route('registerUser') }}">
+                        <i class="fas fa-plus"></i>&nbsp; Add New User</a>
+                </div>
                 <table class="table table-bordered" id="dataTable" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Short Name</th>
-                            <th>Position</th>
-                            <th>Contact No</th>
-                            <th style="width:30px">Email</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Category</th>
+                            <th style="width:30px">Phone Number</th>
                             <th style="width:30px">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($userRecord as $data)
 
                         <tr id="1">
 
-                            <td>Aleeya</td>
-                            <td>Eyaa</td>
-                            <td>Entah</td>
-                            <td>0199922222</td>
-                            <td>eyaa@gmail.com</td>
+                            <td>{{ $data->Fname }}</td>
+                            <td>{{ $data->Lname }}</td>
+                            <td>{{ $data->email }}</td>
+                            <td>{{ $data->category }}</td>
+                            <td>{{ $data->phoneNum }}</td>
                             <td>
                                 <div class="btn-group" style="float: right;">
                                     <a href="" class="btn btn-primary">Edit</a>
-                                    <button class="btn btn-danger" onclick="deleteItem(this)" data-id="" data-name="">Delete</button>
+                                    <button class="btn btn-danger" type="button" onclick="deleteItem(this)" data-id="{{ $data->id }}" data-name="{{ $data->Fname }}">Delete</button>
                                 </div>
                             </td>
                         </tr>
-                        
-                        <tr id="1">
-
-                            <td>Aleeya</td>
-                            <td>Eyaa</td>
-                            <td>Entah</td>
-                            <td>0199922222</td>
-                            <td>eyaa@gmail.com</td>
-                            <td>
-                                <div class="btn-group" style="float: right;">
-                                    <a href="" class="btn btn-primary">Edit</a>
-                                    <button class="btn btn-danger" onclick="deleteItem(this)" data-id="" data-name="">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                        
-                        <tr id="1">
-
-                            <td>Aleeya</td>
-                            <td>Eyaa</td>
-                            <td>Entah</td>
-                            <td>0199922222</td>
-                            <td>eyaa@gmail.com</td>
-                            <td>
-                                <div class="btn-group" style="float: right;">
-                                    <a href="" class="btn btn-primary">Edit</a>
-                                    <button class="btn btn-danger" onclick="deleteItem(this)" data-id="" data-name="">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -141,7 +119,7 @@
 
                     $.ajax({
                         type: 'DELETE',
-                        url: '' + id,
+                        url: '{{url("/deleteUser")}}/' + id,
                         data: {
                             "_token": "{{ csrf_token() }}",
                         },
@@ -149,7 +127,7 @@
                             if (data.success) {
                                 swalWithBootstrapButtons.fire(
                                     'Deleted!',
-                                    'Technician account has been deleted.',
+                                    'User account has been deleted.',
                                     "success"
                                 );
 
@@ -179,5 +157,7 @@
 
 <!-- Page level plugin JavaScript-->
 <script src="{{ asset('frontend') }}/js/jquery.dataTables.js"></script>
+<!-- for sweet alert fire-->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
 
 @endsection

@@ -42,8 +42,8 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/myProfile', 'index')->name('myProfile.page');
     Route::get('/userList', 'userList')->name('userList.page');
     Route::get('/registerUser', 'registerUser')->name('registerUser');
-    Route::get('/createactivity', 'createActivity')->name('activity.create');
-    Route::get('/editactivity', 'editActivity')->name('activity.edit');
+    Route::post('/addUser', 'addUser')->name('addUser');
+    Route::delete('/deleteUser/{id}', 'deleteUser')->name('deleteUser');
 });
 
 Route::controller(App\Http\Controllers\ElectionController::class)->group(function(){
