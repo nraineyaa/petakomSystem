@@ -24,37 +24,42 @@
                 <div class="card-header">{{ __('Candidate Information') }}</div>
                 <div class="card-body">
 
-
+                    @foreach($election as $key=>$data)
                     <center>
                         <table style="width:80%">
                             <br>
+                            
                             <tr>
-                                <th>Profile Image:</th>
-                                <td><input type="file" id="myFile" name="filename"></td>
+                                <th>Student ID:</th>
+                                <td>{{ $data->student_ID }}</td>
                             </tr>
                             <tr>
                                 <th>Name:</th>
-                                <td><?php echo "Hello world!<br>"; ?></td> <!--output from database-->
+                                <td>{{ $data->full_name }}</td>
                             </tr>
                             <tr>
-                                <th>Year:</th>
-                                <td><?php echo "Hello world!<br>"; ?></td>
+                                <th>Current Semester:</th>
+                                <td>{{ $data->crt_semester }}</td>
                             </tr>
                             <tr>
-                                <th>Address:</th>
-                                <td><?php echo "Hello world!<br>"; ?></td>
+                                <th>Current Result:</th>
+                                <td>{{ $data->crt_result }}</td>
                             </tr>
                             <tr>
-                                <th>Phone Number:</th>
-                                <td><?php echo "Hello world!<br>"; ?></td>
+                                <th>Previous Activities:</th>
+                                <td>{{ $data->prv_activities }}</td>
                             </tr>
                             <tr>
                                 <th>Manifesto:</th>
-                                <td><?php echo "Hello world!<br>"; ?></td>
+                                <td>{{ $data->manifesto }}</td>
+                            </tr>
+                            <tr>
+                                <th>Status:</th>
+                                <td>{{ $data->status }}</td>
                             </tr>
                         </table>
                     </center><br>
-
+                    @endforeach
                 </div>
 
 

@@ -51,5 +51,6 @@ Route::controller(App\Http\Controllers\ElectionController::class)->group(functio
     Route::get('/show', 'show')->name('show');
     Route::put('/update/{id}', 'update')->name('update');
     Route::get('/approval/{id}', 'approval')->name('approval');
+    Route::get('/reject/{id}', 'reject')->name('reject');
     Route::get('/destroy/{id}', 'destroy')->name('destroy');
 });

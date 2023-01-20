@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB as FacadesDB;
 
 class ElectionController extends Controller
 {
+    //VOTE LIST 
     public function vote(Election $election)
     {
 
@@ -19,7 +20,7 @@ class ElectionController extends Controller
             ->get();
 
 
-        return view('election.student.studList', compact('election')); //List for vote (DISPLAY)
+        return view('election.student.studList', compact('election'));
     }
     public function register()
     { //register election (CREATE)
@@ -60,14 +61,21 @@ class ElectionController extends Controller
 
         return view('election.hosd.hosdList', compact('election'));
     }
+    
+    //HOSD INFO
     public function hosdInfo()
-    { //Info for Committee
-        return view('election.hosd.hosdInfo');
+    { 
+        $election = DB::table('election')
+            ->orderBy('id', 'desc')
+            ->get();
+
+
+        return view('election.hosd.hosdInfo', compact('election'));
     }
 
 
-
-    public function store(Request $request) //Store details
+    //STORE REGISTRATION (STUDENT)
+    public function store(Request $request)
     {
 
         $id = Auth::user()->id;
@@ -110,7 +118,8 @@ class ElectionController extends Controller
         return view('election.student.updateReg', compact('election'));
     }
 
-    public function update(Request $request, $id) //Update registration details
+    //UPDATE REGISTRATION DETAILS (STUDENT)
+    public function update(Request $request, $id)
     {
         $election = Election::find($id);
         $path = public_path() . '/assets/' . $election->profile_img;
@@ -136,7 +145,8 @@ class ElectionController extends Controller
             ->with('Success', 'Election registration has been updated');
     }
 
-    public function destroy(Request $request, $id) //Cancel registration
+    //CANCEL REGISTRATION (STUDENT)
+    public function destroy(Request $request, $id) 
     {
         $election = Election::find($id);
         $path = public_path() . '/assets/' . $election->profile_img;
@@ -150,12 +160,22 @@ class ElectionController extends Controller
         return redirect()->back()->with('message','Deleted');
     }
 
+    //REGISTRATION APPROVAL (HOSD)
     public function approval($id)
     {
         $election = Election::find($id);
         $election->status = "Approved";
 
         $election->update();
-        return redirect()->route('election.hosd.hosdlist');
+        return redirect()->route('election.hosd.hosdList');
+    }
+
+    public function reject($id)
+    {
+        $election = Election::find($id);
+        $election->status = "Rejected";
+
+        $election->update();
+        return redirect()->route('election.hosd.hosdList');
     }
 }

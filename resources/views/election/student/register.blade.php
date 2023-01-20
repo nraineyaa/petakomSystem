@@ -83,12 +83,10 @@
 
                         @foreach($election_data as $key=>$data)
                             <tr id="row{{ $data->id }}">
-                                <th scope="row">{{ $data->id }}</th>
                                 <td>{{ $data->full_name }}</td>
                                 <td>{{ $data->crt_semester }}</td>
                                 <td>{{ $data->status }}</td>
                                 <td>
-                                    <a class="btn btn-success" href="/hosdInfo">View Details</a>
                                     <a class="btn btn-success" href="{{ route('election.student.updateReg', $data->id) }}">Update</a>
                                     <a class="btn btn-success" href="{{ route('destroy', $data->id) }}">Delete</a>
                                 </td> 

@@ -46,7 +46,7 @@
                                 <td>
                                     <a class="btn btn-success" href="/hosdInfo">View Details</a>
                                     <a class="btn btn-success" href="{{ route('approval', $data->id) }}">Approve</a>
-                                    <a class="btn btn-success" href="/studList">Reject</a>
+                                    <a class="btn btn-success" href="{{ route('reject', $data->id) }}">Reject</a>
                                 </td> 
                             </tr> 
                             @endforeach
