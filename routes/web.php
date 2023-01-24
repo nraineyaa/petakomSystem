@@ -46,20 +46,21 @@ Route::controller(UserController::class)->group(function(){
     Route::delete('/deleteUser/{id}', 'deleteUser')->name('deleteUser');
 });
 
+//route for election controller
 Route::controller(App\Http\Controllers\ElectionController::class)->group(function(){
-    Route::get('/studList', 'vote')->name('election.student.studList');
-    Route::get('/register', 'register')->name('election.student.register');
-    Route::get('/registration', 'registration')->name('election.student.registration');
-    Route::get('/updateReg/{id}', 'updateReg')->name('election.student.updateReg');
-    Route::get('/comList', 'comList')->name('election.committee.comList');
-    Route::get('/comInfo', 'comInfo')->name('election.committee.comInfo');
-    Route::get('/hosdList', 'hosdList')->name('election.hosd.hosdList');
-    Route::get('/hosdInfo', 'hosdInfo')->name('election.hosd.hosdInfo');
+    Route::get('/studList', 'vote')->name('election.studList');
+    Route::get('/register', 'register')->name('election.register');
+    Route::get('/registration', 'registration')->name('election.registration');
+    Route::get('/updateReg/{id}', 'updateReg')->name('election.updateReg');
+    Route::get('/comList', 'comList')->name('election.comList');
+    Route::get('/comInfo/{id}', 'comInfo')->name('election.comInfo');
+    Route::get('/hosdList', 'hosdList')->name('election.hosdList');
+    Route::get('/hosdInfo/{id}', 'hosdInfo')->name('election.hosdInfo');
 
     Route::post('/store', 'store')->name('store');
     Route::get('/show', 'show')->name('show');
     Route::put('/update/{id}', 'update')->name('update');
     Route::get('/approval/{id}', 'approval')->name('approval');
     Route::get('/reject/{id}', 'reject')->name('reject');
-    Route::get('/destroy/{id}', 'destroy')->name('destroy');
+    Route::get('/voter/{id}', 'voter')->name('voter');
 });

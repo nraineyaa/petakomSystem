@@ -4,23 +4,16 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Search') }}</div>
-
-                <div class="card-body">
-                    <center><input type="search" id="gsearh" name="gsearch" style="width:70%">
-                        <input type="submit">
-                    </center>
-                </div>
-
-            </div><br>
+            <br>
             <center>
                 <h2><strong>ELECTION REGISTRATION</strong></h2>
             </center><br>
+            <!--if not register election-->
             @if(! $election)
             <div class="card">
 
                 <div class="card-body">
+                    <!--call store function from controller-->
                     <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <center>
@@ -56,49 +49,51 @@
                                 </tr>
                             </table>
                         </center><br>
-                        <center><input type="submit" style="width:70%; background-color:forestgreen; color:aliceblue"></center><br> <!--registration-->
-                        <center><button style="width:70%; background-color:firebrick; color:aliceblue">Cancel</button></center>
-                    </form> <!--Go to dashboard.Student-->
+                        <!--submit button-->
+                        <center><input type="submit" style="width:70%;" class="btn btn-primary"></center><br>
+                    </form>
                 </div>
             </div>
+            <!--if already registered election-->
             @elseif($election)
             <div class="card">
-
                 <div class="card">
-                <div class="card-header">{{ __('Registered') }}</div>
-                <div class="card-body">
+                    <div class="card-header" style="background-color:powderblue;">
+                        <center>
+                            <h3>You have already voted.</h3>
+                        </center>
+                    </div>
+                    <div class="card-body">
+                        <table class="table text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Profile Image</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Matric ID ID</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col"></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider align-middle">
+                                <!--display data from database-->
+                                @foreach($election_data as $key=>$data)
+                                <tr id="row{{ $data->id }}">
+                                    <td><img style="height:150px" src="{{ asset('assets') }}/{{ $data->profile_img }}"></td>
+                                    <td>{{ $data->full_name }}</td>
+                                    <td>{{ $data->student_ID }}</td>
+                                    <td>{{ $data->status }}</td>
+                                    <!--update button (go to updateReg)-->
+                                    <td><a class="btn btn-primary" href="{{ route('election.updateReg', $data->id) }}">Update</a></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
 
 
-                    <table class="table text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Year</th>
-                                <th scope="col"></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-group-divider align-middle">
-
-                        @foreach($election_data as $key=>$data)
-                            <tr id="row{{ $data->id }}">
-                                <td>{{ $data->full_name }}</td>
-                                <td>{{ $data->crt_semester }}</td>
-                                <td>{{ $data->status }}</td>
-                                <td>
-                                    <a class="btn btn-success" href="{{ route('election.student.updateReg', $data->id) }}">Update</a>
-                                    <a class="btn btn-success" href="{{ route('destroy', $data->id) }}">Delete</a>
-                                </td> 
-                            </tr>
-                            @endforeach 
-                        </tbody>
-                    </table>
 
 
-                
-
-            </div>
+                    </div>
 
 
                 </div>

@@ -4,16 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Search') }}</div>
-
-                <div class="card-body">
-                    <center><input type="search" id="gsearch" name="gsearch" style="width:70%">
-                        <input type="submit">
-                    </center>
-                </div>
-
-            </div><br>
+            <br>
             <center>
                 <h2><strong>ELECTION INFO FOR COORDINATOR</strong></h2>
             </center>
@@ -23,48 +14,42 @@
             <div class="card">
                 <div class="card-header">{{ __('Candidate Information') }}</div>
                 <div class="card-body">
-
-                    @foreach($election as $key=>$data)
                     <center>
                         <table style="width:80%">
                             <br>
-                            
+                            <center><img style="height:200px" src="{{ asset('assets') }}/{{ $election->profile_img }}"></center><br><br>
                             <tr>
-                                <th>Student ID:</th>
-                                <td>{{ $data->student_ID }}</td>
+                                <th style="width:40%">Student ID:</th>
+                                <td>{{ $election->student_ID }}</td>
                             </tr>
                             <tr>
                                 <th>Name:</th>
-                                <td>{{ $data->full_name }}</td>
+                                <td>{{ $election->full_name }}</td>
                             </tr>
                             <tr>
                                 <th>Current Semester:</th>
-                                <td>{{ $data->crt_semester }}</td>
+                                <td>{{ $election->crt_semester }}</td>
                             </tr>
                             <tr>
                                 <th>Current Result:</th>
-                                <td>{{ $data->crt_result }}</td>
+                                <td>{{ $election->crt_result }}</td>
                             </tr>
                             <tr>
                                 <th>Previous Activities:</th>
-                                <td>{{ $data->prv_activities }}</td>
+                                <td>{{ $election->prv_activities }}</td>
                             </tr>
                             <tr>
                                 <th>Manifesto:</th>
-                                <td>{{ $data->manifesto }}</td>
+                                <td>{{ $election->manifesto }}</td>
                             </tr>
                             <tr>
                                 <th>Status:</th>
-                                <td>{{ $data->status }}</td>
+                                <td>{{ $election->status }}</td>
                             </tr>
                         </table>
                     </center><br>
-                    @endforeach
                 </div>
-
-
             </div>
-
         </div>
     </div>
 </div>

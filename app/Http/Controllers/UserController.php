@@ -53,7 +53,7 @@ class UserController extends Controller
         $data = array(
 
 
-            'email' => $email,
+            "email" => $email,
             "password" => $password,
             "confirmPass" => $confirmPass,
             "Fname" => $Fname,
