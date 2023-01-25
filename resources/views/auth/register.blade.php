@@ -43,15 +43,7 @@
                             <label for="category" class="col-md-4 col-form-label text-md-end">Category</label>
 
                             <div class="col-md-6">
-                                <select type="text" id="category" name="category" class="form-control @error('category') is-invalid @enderror" value="{{ old('category') }}" required>
-                                    <option value="">Choose category</option>
-                                    <option value="student">Student</option>
-                                    <option value="lecturer">Lecturer</option>
-                                    <option value="committee">Committee</option>
-                                    <option value="coordinator">Coordinator</option>
-                                    <option value="dean">Dean</option>
-                                    <option value="headofdevelopment">Head of Development</option>
-                                </select>
+                                <input id="category" type="text" class="form-control" name="category" placeholder="" required >
 
                             </div>
                         </div>

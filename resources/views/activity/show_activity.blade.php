@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.master')
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
@@ -11,7 +11,7 @@
             <i class="bi bi-arrow-left-circle-fill h3"></i>
         </a>
         <div class="text-center">
-            <span class="display-2 fw-semibold ">{{ $activity->name }}</span>
+            <span class="display-2 fw-semibold ">Gotong Royong FK</span>
 
             <div class="row justify-content-md-center fs-5 mt-5">
                 <div class="col col-lg-2 text-end fw-semibold">
@@ -21,8 +21,7 @@
                     :
                 </div>
                 <div class="col col-lg-6 text-start">
-                    {{ \Carbon\Carbon::createFromFormat('H:i:s',$activity->time)->format('h:i A')}}
-                    {{-- {{ $activity->time }} --}}
+                    8.30 a.m -12 p.m
                 </div>
             </div>
             <div class="row justify-content-md-center fs-5">
@@ -33,7 +32,7 @@
                     :
                 </div>
                 <div class="col col-lg-6 text-start">
-                    {{ \Carbon\Carbon::parse($activity->date)->format('j F, Y') }}
+                    12 Dec 2022
                 </div>
             </div>
             <div class="row justify-content-md-center fs-5">
@@ -44,7 +43,7 @@
                     :
                 </div>
                 <div class="col col-lg-6 text-start">
-                    {{ $activity->venue }}
+                    Fakulti Komputer
                 </div>
             </div>
             <div class="row justify-content-md-center fs-5">
@@ -55,7 +54,7 @@
                     :
                 </div>
                 <div class="col col-lg-6 text-start">
-                    {{ $activity->organizer_name }}
+                    Afiq
                 </div>
             </div>
             <div class="row justify-content-md-center fs-5 mt-3">
@@ -66,7 +65,7 @@
                     :
                 </div>
                 <div class="col col-lg-6 text-start">
-                    {{ $activity->objective }}
+                    To allow students and FK community work together clearn the campus.
                 </div>
             </div>
             <div class="row justify-content-md-center fs-5 mt-3">
@@ -77,7 +76,7 @@
                     :
                 </div>
                 <div class="col col-lg-6 text-start">
-                    {{ $activity->description }}
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est nisi, sapiente blanditiis et odio iusto omnis! Animi voluptatem libero, rem odio quo, quam facere culpa vel ex placeat, natus ea.
                 </div>
             </div>
             

@@ -18,12 +18,7 @@
         transform: translateY(0);
         opacity: 1;
     }
-
-    a:link { text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
 </style>
-
 
 
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="margin-top:100px;">
@@ -105,17 +100,22 @@
     <div class="container">
         <h3 class="text-center">Latest Bulletin News</h3>
         <div class="w-75 mt-5" style="margin:auto;">
-        @forelse($bulletin as $item)
-            <div style="text-align:center;" class="row">
-                <a style="font-size:18px;color:black;text-transform:uppercase;" href="/bulletin/{{$item->id}}/show">{{ $item->news_title }}</a>
-                <span style="color:blue;">{{ date('d F, Y' ,strtotime($item->created_at)) }}</span>
-            </div><br>
-                @empty
-                <td><h1 style="text-align:center;">No Records Yet</h1></td>
-        @endforelse
-        </div>
-        <div style="margin-left:45%;margin-top:50px;">
-            {{ $bulletin->links() }}
+            <div class="row mb-3">
+                <h5>iCe-Cinno Opening Ceremony 2022</h5>
+                <span class="text-primary">04 November 2022</span>
+            </div>
+            <div class="row mb-3">
+                <h5>Part-Time Job Application with Mahiran Digital Sdn Bhd</h5>
+                <span class="text-primary">05 November 2022</span>
+            </div>
+            <div class="row mb-3">
+                <h5>Petakom UMP 22/23 are currently collecting order from student and staff to buy the Faculty Computing
+                    jackets</h5>
+                <span class="text-primary">11 November 2022</span>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary">See more news ></button>
+            </div>
         </div>
     </div>
 </section>

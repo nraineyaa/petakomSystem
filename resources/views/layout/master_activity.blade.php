@@ -27,11 +27,7 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0 text-center ms-auto">
                     <li class="nav-item">
-                        <div class="d-flex align-items-center">
-                            <a class="nav-link active align-middle" aria-current="page" href="/homepage">Hi, Afiq</a>
-                            <i class="bi bi-caret-down-fill"></i>
-                        </div>
-
+                        <a class="nav-link active" aria-current="page" href="/homepage">Hi, Afiq!</a>
                     </li>
                 </ul>
             </div>
@@ -41,7 +37,7 @@
     <div style="margin-top:100px;">
         @yield('content')
     </div>
-
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
