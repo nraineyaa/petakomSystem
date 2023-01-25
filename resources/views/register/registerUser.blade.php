@@ -21,14 +21,6 @@
 
                                         <div class="form-row">
                                             <div class="form-group col-md-12">
-                                                <label for="username">Username</label>
-                                                <input type="text" class="form-control" id="username" name="username" placeholder="username" required>
-                                            </div>
-                                        </div>
-
-                                        <br>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-12">
                                                 <label for="email">Student Email </label>
                                                 <input type="text" class="form-control" id="email" name="email" placeholder="email" required>
                                             </div>

@@ -44,6 +44,11 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/registerUser', 'registerUser')->name('registerUser');
     Route::post('/addUser', 'addUser')->name('addUser');
     Route::delete('/deleteUser/{id}', 'deleteUser')->name('deleteUser');
+    Route::get('/editUser/{id}', 'editUser')->name('editUser');
+    Route::post('/updateUser/{id}', 'updateUser')->name('updateUser');
+    Route::post('/updateAvatar', 'updateAvatar')->name('updateAvatar');
+    Route::post('/updateProfile/{id}', 'updateProfile')->name('updateProfile');
+    Route::post('/updatePassword', 'updatePassword')->name('updatePassword');
 });
 
 Route::controller(App\Http\Controllers\ElectionController::class)->group(function(){
