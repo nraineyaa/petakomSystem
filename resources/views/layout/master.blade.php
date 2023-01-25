@@ -62,8 +62,10 @@
 
                             @if( auth()->user()->category == "Student")
                             <div id="myDropdown" class="dropdown-content">
+
                                 <a class="nav-link" aria-current="page" class="nav-link {{ request()->routeIs('election*') ? 'active' : '' }}" href="{{ route('election.studList') }}">Vote for Election</a><br>
                                 <a class="nav-link" aria-current="page" href="{{ route('election.register') }}">Register for Election</a><br>
+
                             </div>
                             @endif
 
@@ -117,12 +119,19 @@
                     </li>
                     @endif
                     @else
-                   
+
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->Fname }}
+                        <mdb-dropdown-toggle slot="toggle" navlink tag="li" class="nav-item avatar" waves-fixed>
+                                <mdb-icon icon="user-circle" v-if="!loggedIn" />
+                                <mdb-avatar v-else>
+                                    <img alt="profile-image" class="rounded-circle" src="{{asset('uploads/'. Auth::user()->picture)}}" style="width: 30px; height: 35px;" />
+                                </mdb-avatar>
+                            </mdb-dropdown-toggle>
+                             {{ Auth::user()->Fname }}
                         </a>
-                        
+
+
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 

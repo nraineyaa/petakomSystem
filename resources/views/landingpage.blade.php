@@ -95,14 +95,14 @@
 
                     <ul class="ud-hero-buttons">
                         <li>
-                            <a href="{{ route('login') }}" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-white-btn">
+                            <a href="{{ route('login') }}" rel="nofollow noopener" class="ud-main-btn ud-white-btn">
                                 Click here to Login
                             </a>
                         </li>
                     </ul>
-                    </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
     <!-- ====== Hero End ====== -->
