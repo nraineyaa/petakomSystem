@@ -23,7 +23,7 @@ class DashboardController extends Controller
         if ($category == 'Coordinator') {
             return view('dashboard.Coordinator');
         }
-        if ($category == 'Hosd') {
+        if ($category == 'HOSD') {
             return view('dashboard.Hosd');
         }
         if ($category == 'Dean') {

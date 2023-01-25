@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('election', function (Blueprint $table) {
+        Schema::create('voter', function (Blueprint $table) {
             $table->id();
-            $table->blob('profile_img');
-            $table->varchar('student_ID');
-            $table->varchar('full_name');
-            $table->varchar('crt_semester');
-            $table->double('crt_result');
-            $table->varchar('prv_activities');
-            $table->varchar('manifesto');
+            $table->bigInteger('user_ID');
+            $table->bigInteger('candidate_ID');
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('election');
+        Schema::dropIfExists('voter');
     }
 };

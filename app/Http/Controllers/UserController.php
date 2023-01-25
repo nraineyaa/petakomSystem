@@ -80,6 +80,7 @@ class UserController extends Controller
             'category' => $category,
             'address' => $address,
             'picture' => 'pp.png',
+
         );
 
         //dd($data);
