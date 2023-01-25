@@ -11,20 +11,8 @@
             <i class="bi bi-arrow-left-circle-fill h3"></i>
         </a>
         <div class="text-center">
-            <span class="display-2 fw-semibold ">{{ $activity->name }}</span>
+            <span class="display-2 fw-semibold ">{{ $proposal->Proposal_Title }}</span>
 
-            <div class="row justify-content-md-center fs-5 mt-5">
-                <div class="col col-lg-2 text-end fw-semibold">
-                    Time
-                </div>
-                <div class="col-md-auto text-start">
-                    :
-                </div>
-                <div class="col col-lg-6 text-start">
-                    {{ \Carbon\Carbon::createFromFormat('H:i:s',$activity->time)->format('h:i A')}}
-                    {{-- {{ $activity->time }} --}}
-                </div>
-            </div>
             <div class="row justify-content-md-center fs-5">
                 <div class="col col-lg-2 text-end fw-semibold">
                     Date
@@ -33,51 +21,40 @@
                     :
                 </div>
                 <div class="col col-lg-6 text-start">
-                    {{ \Carbon\Carbon::parse($activity->date)->format('j F, Y') }}
+                    {{ \Carbon\Carbon::parse($proposal->Proposal_date)->format('j F, Y') }}
                 </div>
             </div>
             <div class="row justify-content-md-center fs-5">
                 <div class="col col-lg-2 text-end fw-semibold">
-                    Venue
-                </div>
-                <div class="col-md-auto text-start">
-                    :
-                </div>
-                <div class="col col-lg-6 text-start">
-                    {{ $activity->venue }}
-                </div>
-            </div>
-            <div class="row justify-content-md-center fs-5">
-                <div class="col col-lg-2 text-end fw-semibold">
-                    Organizer
+                    Proposal Creator Name
                 </div>
                 <div class="col-md-auto text-start ">
                     :
                 </div>
                 <div class="col col-lg-6 text-start">
-                    {{ $activity->organizer_name }}
+                    {{ $activity->ProposalCreator_name }}
                 </div>
             </div>
             <div class="row justify-content-md-center fs-5 mt-3">
                 <div class="col col-lg-2 text-end fw-semibold">
-                    Objective
+                    Proposal Objective
                 </div>
                 <div class="col-md-auto text-start">
                     :
                 </div>
                 <div class="col col-lg-6 text-start">
-                    {{ $activity->objective }}
+                    {{ $proposal->Proposal_objective }}
                 </div>
             </div>
             <div class="row justify-content-md-center fs-5 mt-3">
                 <div class="col col-lg-2 text-end fw-semibold">
-                    Description
+                    Proposal Description
                 </div>
                 <div class="col-md-auto text-start">
                     :
                 </div>
                 <div class="col col-lg-6 text-start">
-                    {{ $activity->description }}
+                    {{ $proposal->Proposal_description }}
                 </div>
             </div>
             

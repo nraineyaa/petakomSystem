@@ -1,3 +1,5 @@
+<!-- This is where view list of report, approve or decline report for HOSD  -->
+
 @extends('layouts.app')
 
 @section('content')
@@ -5,12 +7,11 @@
 <section class="p-5">
     <div class="container">
         <div class="text-center">
-            <span class="fw-semibold display-2">Activities</span>
-            <p class="lead text-muted">These are the list of propose activities by the lecturers and students</p>
+            <span class="fw-semibold display-2">Reports</span>
         </div>
 
-        {{-- <a href="{{ route('activity.create') }}" class="btn btn-warning p-2 mb-3 fw-semibold">Create new
-            activity</a> --}}
+        {{-- <a href="{{ route('report.create') }}" class="btn btn-warning p-2 mb-3 fw-semibold">Create new
+            report</a> --}}
 
         @if (Session::has('success'))
         <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
@@ -31,36 +32,36 @@
                         <thead>
                             <tr class="text-center">
                                 <th>No</th>
-                                <th>Activity</th>
+                                <th>Report</th>
                                 <th>Date</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider text-center">
-                            @if (count($activity) > 0)
-                            @foreach ($activity as $activities)
+                            @if (count($report) > 0)
+                            @foreach ($report as $reports)
                             <tr class="align-middle">
-                                <td>{{ $activities->id }}</td>
-                                <td>{{ $activities->activity->name }}</td>
-                                <td>{{ \Carbon\Carbon::parse($activities->activity->date)->format('j F, Y') }}</td>
+                                <td>{{ $reports->id }}</td>
+                                <td>{{ $reports->report->Report_Title }}</td>
+                                <td>{{ \Carbon\Carbon::parse($reports->report->Report_date)->format('j F, Y') }}</td>
                                 <td>
-                                    @if ($activities->activity->status == "Rejected")
+                                    @if ($reports->reports->statusbyHOSD == "Rejected")
                                     <div class="badge bg-danger text-wrap" style="width: 6rem;">
-                                        {{ $activities->activity->status }}
+                                        {{ $reports->report->statusbyHOSD }}
                                     </div>
                                     @else
                                     <div class="badge bg-success text-wrap" style="width: 6rem;">
-                                        {{ $activities->activity->status }}
+                                        {{ $reports->report->statusbyHOSD }}
                                     </div>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('activity.show', $activities->Activity->id) }}"
+                                    <a href="{{ route('report.show', $reports->Report->id) }}"
                                         class="text-decoration-none btn btn-outline-success">View</a>
-                                    <a href="{{ route('propose.approve', $activities->activity->id) }}"
+                                    <a href="{{ route('ReportHOSD.approve', $reports->report->id) }}"
                                         class="text-decoration-none btn btn-primary">Approve</a>
-                                    <a href="{{ route('propose.reject', $activities->activity->id) }}"
+                                    <a href="{{ route('ReportHOSD.reject', $reports->report->id) }}"
                                         class="text-decoration-none btn btn-danger">Reject</a>
                                 </td>
                             </tr>
