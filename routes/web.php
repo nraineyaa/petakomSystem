@@ -24,7 +24,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+<<<<<<< Updated upstream
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
+=======
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+>>>>>>> Stashed changes
 
 Route::get('/homepage', function(){
     return view('homepage');
