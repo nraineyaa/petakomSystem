@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <style>
@@ -27,13 +28,26 @@
             display: block;
         }
     </style>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
 </head>
 
 
 <body>
     <nav class="navbar navbar-expand-lg bg-body fixed-top">
         <div class="container">
-            <a class="navbar-brand me-auto" href="/homepage">
+            <a class="navbar-brand me-auto" href="/">
                 <img src="{{ asset('image/petakom.png') }}" alt="petakom-logo" style="width: 75px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,11 +59,12 @@
                 <ul class="navbar-nav mb-2 mb-lg-0 text-center">
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/homepage">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
 
                     @if( auth()->user()->category!= "Dean")
                     <li class="nav-item">
+
                         <a class="nav-link {{ request()->routeIs('activity*') ? 'active' : '' }}" aria-current="page" href="/activity">Activities</a>
                     </li>
                     <li class="nav-item">
@@ -83,12 +98,25 @@
                             <!--guna IF ELSE-->
 
                         </div>
+
+                        <a class="nav-link" aria-current="page" href="{{ route('proposed.activity') }}">Activities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/calendar-event">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ route('proposal.view') }}">Proposal</a>
+
                     </li>
                     @endif
 
                     @if( auth()->user()->category == "Committee" || auth()->user()->category == "HOSD" )
                     <li class="nav-item">
+
                         <a class="nav-link" aria-current="page" href="#">Calendar</a>
+
+                        <a class="nav-link" aria-current="page" href="{{ route('report.view') }}">Report</a>
+
                     </li>
                     @endif
 
@@ -97,11 +125,12 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Bulletin</a>
+                        <a class="nav-link" aria-current="page" href="/bulletinUserPage">Bulletin</a>
                     </li>
                 </ul>
             </div>
             <div class="d-flex ms-auto gap-3">
+
                 <ul class="navbar-nav ms-auto">
                     <!-- Authentication Links -->
                     @guest
@@ -147,6 +176,10 @@
                     </li>
                     @endguest
                 </ul>
+
+                <a href="{{ route('login') }}" class="btn btn-primary" type="button">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-outline-primary" type="button">Register</a>
+
             </div>
         </div>
     </nav>
