@@ -77,7 +77,7 @@
 
                             @if( auth()->user()->category == "Coordinator")
                             <div id="myDropdown" class="dropdown-content">
-                                <a class="nav-link" aria-current="page" class="nav-link {{ request()->routeIs('election*') ? 'active' : '' }}" href="/hosdList">View Election List</a><br>
+                                <a class="nav-link" aria-current="page" class="nav-link {{ request()->routeIs('election*') ? 'active' : '' }}" href="/coorList">View Election List</a><br>
                             </div>
                             @endif
 

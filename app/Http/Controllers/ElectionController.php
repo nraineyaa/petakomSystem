@@ -97,7 +97,7 @@ class ElectionController extends Controller
     }
 
     //list for hosd
-    public function hosdList()
+    public function coorList()
     {
         $election = DB::table('election')
             ->orderBy('id', 'desc')
@@ -105,16 +105,16 @@ class ElectionController extends Controller
             ->get();
 
 
-        return view('election.hosdList', compact('election'));
+        return view('election.coorList', compact('election'));
     }
 
     //info for hosd
-    public function hosdInfo(Request $request, $id)
+    public function coorInfo(Request $request, $id)
     {
         $election = Election::find($id);
 
 
-        return view('election.hosdInfo', compact('election'));
+        return view('election.coorInfo', compact('election'));
     }
 
     //store election registration
@@ -212,7 +212,7 @@ class ElectionController extends Controller
         $election->status = "Approved";
 
         $election->update();
-        return redirect()->route('election.hosdList');
+        return redirect()->route('election.coorList');
     }
 
     //registration rejection for hosd
@@ -222,6 +222,6 @@ class ElectionController extends Controller
         $election->status = "Rejected";
 
         $election->update();
-        return redirect()->route('election.hosdList');
+        return redirect()->route('election.coorList');
     }
 }

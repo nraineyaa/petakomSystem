@@ -24,11 +24,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-<<<<<<< Updated upstream
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
-=======
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
->>>>>>> Stashed changes
 
 Route::get('/homepage', function(){
     return view('homepage');
@@ -63,8 +59,8 @@ Route::controller(App\Http\Controllers\ElectionController::class)->group(functio
     Route::get('/updateReg/{id}', 'updateReg')->name('election.updateReg');
     Route::get('/comList', 'comList')->name('election.comList');
     Route::get('/comInfo/{id}', 'comInfo')->name('election.comInfo');
-    Route::get('/hosdList', 'hosdList')->name('election.hosdList');
-    Route::get('/hosdInfo/{id}', 'hosdInfo')->name('election.hosdInfo');
+    Route::get('/coorList', 'coorList')->name('election.coorList');
+    Route::get('/coorInfo/{id}', 'coorInfo')->name('election.coorInfo');
 
     Route::post('/store', 'store')->name('store');
     Route::get('/show', 'show')->name('show');

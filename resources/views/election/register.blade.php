@@ -60,7 +60,7 @@
                 <div class="card">
                     <div class="card-header" style="background-color:powderblue;">
                         <center>
-                            <h3>You have already voted.</h3>
+                            <h3>You have already registered.</h3>
                         </center>
                     </div>
                     <div class="card-body">

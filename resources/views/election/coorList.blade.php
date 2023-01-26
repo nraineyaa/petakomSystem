@@ -34,7 +34,7 @@
                                 <td>{{ $data->status }}</td>
                                 <td>
                                     <!--view details button-->
-                                    <a class="btn btn-warning" href="{{ route('election.hosdInfo', $data->id) }}">View Details</a>
+                                    <a class="btn btn-warning" href="{{ route('election.coorInfo', $data->id) }}">View Details</a>
                                     <!--approve registration-->
                                     <a class="btn btn-success" href="{{ route('approval', $data->id) }}">Approve</a>
                                     <!--reject registration-->
