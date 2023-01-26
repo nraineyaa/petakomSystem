@@ -21,6 +21,9 @@
                                         @csrf
                                         @method('post')
 
+                                        <center><div class="mb-3 mx-auto">
+                                            <img class="rounded-circle" src="{{asset('uploads/'. Auth::user()->picture)}}" alt=" User Avatar" width="110" height="110">
+                                        </div></center>
                                         <div class="form-row">
                                             <div class="form-group col-md-12">
                                                 <label for="email">Student Email </label>
@@ -29,7 +32,6 @@
                                         </div>
 
                                         <br>
-
 
                                         <div class="row">
                                             <div class="form-group col-md-6">
@@ -51,7 +53,7 @@
                                             <div class="form-group col-md-6">
                                                 <label for="position">User Type</label>
                                                 <select class="form-select" name="category" id="category">
-                                                    
+
                                                     @if($register->category == "Student")
                                                     <option value="Student" selected>Student</option>
                                                     <option value="Lecturer">Lecturer</option>
@@ -62,7 +64,7 @@
 
                                                     @elseif($register->category == "Lecturer")
                                                     <option value="Student">Student</option>
-                                                    <option value="Lecturer"selected>Lecturer</option>
+                                                    <option value="Lecturer" selected>Lecturer</option>
                                                     <option value="Committee">Committee</option>
                                                     <option value="HOSD">HOSD</option>
                                                     <option value="Dean">Dean</option>
@@ -79,19 +81,19 @@
                                                     @elseif($register->category == "HOSD")
                                                     <option value="Student">Student</option>
                                                     <option value="Lecturer">Lecturer</option>
-                                                    <option value="Committee" >Committee</option>
-                                                    <option value="HOSD"selected>HOSD</option>
+                                                    <option value="Committee">Committee</option>
+                                                    <option value="HOSD" selected>HOSD</option>
                                                     <option value="Dean">Dean</option>
                                                     <option value="Coordinator">Coordinator</option>
 
                                                     @elseif($register->category == "Dean")
                                                     <option value="Student">Student</option>
                                                     <option value="Lecturer">Lecturer</option>
-                                                    <option value="Committee" >Committee</option>
+                                                    <option value="Committee">Committee</option>
                                                     <option value="HOSD">HOSD</option>
-                                                    <option value="Dean"selected>Dean</option>
+                                                    <option value="Dean" selected>Dean</option>
                                                     <option value="Coordinator">Coordinator</option>
-                                                   
+
                                                     @elseif($register->category == "Coordinator")
                                                     <option value="Student">Student</option>
                                                     <option value="Lecturer">Lecturer</option>
